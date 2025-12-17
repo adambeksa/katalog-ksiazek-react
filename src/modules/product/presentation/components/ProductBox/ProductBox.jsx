@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom'
-import './ProductBoxListing.css'
+import './ProductBox.css'
 
 /**
  * Komponent prezentacyjny boxu produktu w liście
  * Używany w liście produktów
  */
-function ProductBoxListing({ product }) {
+function ProductBox({ product }) {
   if (!product) {
     return null
   }
@@ -26,4 +26,4 @@ function ProductBoxListing({ product }) {
   )
 }
 
-export default ProductBoxListing
+export default ProductBox

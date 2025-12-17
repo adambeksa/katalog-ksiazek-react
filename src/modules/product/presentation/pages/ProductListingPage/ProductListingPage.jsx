@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { useFilteredProducts } from '../../hooks/useFilteredProducts'
-import ProductBoxListing from '../../components/ProductBoxListing'
-import './ProductListing.css'
+import ProductBox from '../../components/ProductBox/ProductBox'
+import './ProductListingPage.css'
 
-function ProductListing() {
+function ProductListingPage() {
   const [filter, setFilter] = useState('Wszystkie')
   const [sortBy, setSortBy] = useState('name')
   
@@ -64,7 +64,7 @@ function ProductListing() {
 
         <div className="products-grid">
           {products.map(product => (
-            <ProductBoxListing key={product.id} product={product} />
+            <ProductBox key={product.id} product={product} />
           ))}
         </div>
 
@@ -78,5 +78,5 @@ function ProductListing() {
   )
 }
 
-export default ProductListing
+export default ProductListingPage
 

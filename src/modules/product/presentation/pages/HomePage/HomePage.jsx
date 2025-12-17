@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom'
 import { useProducts } from '../../hooks/useProducts'
-import './Home.css'
+import './HomePage.css'
 
-function Home() {
+function HomePage() {
   const { products, loading } = useProducts()
   
   // Pobierz pierwsze 3 produkty jako popularne
@@ -58,6 +58,6 @@ function Home() {
   )
 }
 
-export default Home
+export default HomePage
 
 

@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
-import { ProductService } from '../../application/services/ProductService'
-import { ProductRepository } from '../../infrastructure/repositories/ProductRepository'
+import { productFacade } from '../../application/ProductFacade'
 
 /**
  * Hook do zarządzania produktami
@@ -12,14 +11,12 @@ export function useProducts() {
   const [error, setError] = useState(null)
 
   useEffect(() => {
-    const productRepository = new ProductRepository()
-    const productService = new ProductService(productRepository)
 
     const loadProducts = async () => {
       try {
         setLoading(true)
         setError(null)
-        const data = await productService.getAllProducts()
+        const data = await productFacade.getAllProducts()
         setProducts(data)
       } catch (err) {
         setError(err.message)

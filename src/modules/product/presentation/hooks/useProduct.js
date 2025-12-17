@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
-import { ProductService } from '../../application/services/ProductService'
-import { ProductRepository } from '../../infrastructure/repositories/ProductRepository'
+import { productFacade } from '../../application/ProductFacade'
 
 export function useProduct(id) {
   const [product, setProduct] = useState(null)
@@ -13,14 +12,11 @@ export function useProduct(id) {
       return
     }
 
-    const productRepository = new ProductRepository()
-    const productService = new ProductService(productRepository)
-
     const loadProduct = async () => {
       try {
         setLoading(true)
         setError(null)
-        const data = await productService.getProductById(id)
+        const data = await productFacade.getProductById(id)
         setProduct(data)
       } catch (err) {
         setError(err.message)

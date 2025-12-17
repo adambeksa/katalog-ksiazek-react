@@ -1,9 +1,9 @@
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
-import './ProductCard.css'
+import './ProductCardPage.css'
 import { useProductQuery } from '../../hooks/useProductQuery'
 
-function ProductCard() {
+function ProductCardPage() {
   const { id } = useParams()
   const navigate = useNavigate()
   const [quantity, setQuantity] = useState(1)
@@ -107,5 +107,5 @@ function ProductCard() {
   )
 }
 
-export default ProductCard
+export default ProductCardPage
 
