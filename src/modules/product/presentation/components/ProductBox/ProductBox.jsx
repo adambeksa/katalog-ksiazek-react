@@ -12,11 +12,14 @@ function ProductBox({ product }) {
 
   return (
     <div className="product-box-listing">
-      <div className="product-image">{product.image}</div>
+      <img className="product-image" src={product.image} alt={product.name} />
       <div className="product-info">
         <h3>{product.name}</h3>
         <p className="product-description">{product.description}</p>
         <p className="product-category">{product.category}</p>
+        {product.salePrice != null && (
+          <p className="product-salePrice">{product.getFormattedSalePrice()}</p>
+        )}
         <p className="product-price">{product.getFormattedPrice()}</p>
         <Link to={`/produkt/${product.id}`} className="product-link">
           Zobacz szczegóły

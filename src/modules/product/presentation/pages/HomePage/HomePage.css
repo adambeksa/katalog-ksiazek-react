@@ -97,6 +97,7 @@
 .product-image-placeholder {
   font-size: 4rem;
   margin-bottom: 1rem;
+  max-width: 100%;
 }
 
 .product-preview h4 {

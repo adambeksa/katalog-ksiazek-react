@@ -4,10 +4,22 @@ import ProductBox from '../../components/ProductBox/ProductBox'
 import './ProductListingPage.css'
 
 function ProductListingPage() {
-  const [filter, setFilter] = useState('Wszystkie')
+  const [filters, setFilters] = useState({
+    author: 'Wszystkie',
+    epoch: 'Wszystkie',
+    genre: 'Wszystkie',
+    kind: 'Wszystkie'
+  })
   const [sortBy, setSortBy] = useState('name')
   
-  const { products, categories, loading, error } = useFilteredProducts(filter, sortBy)
+  const { products, filterOptions, loading, error, page, setPage, totalPages } = useFilteredProducts(filters, sortBy)
+
+  const handleFilterChange = (key, value) => {
+    setFilters(prev => ({
+      ...prev,
+      [key]: value
+    }))
+  }
 
   if (loading) {
     return (
@@ -36,14 +48,53 @@ function ProductListingPage() {
 
         <div className="filters">
           <div className="filter-group">
-            <label htmlFor="category">Kategoria:</label>
+            <label htmlFor="author">Autor:</label>
             <select
-              id="category"
-              value={filter}
-              onChange={(e) => setFilter(e.target.value)}
+              id="author"
+              value={filters.author}
+              onChange={(e) => handleFilterChange('author', e.target.value)}
             >
-              {categories.map(cat => (
-                <option key={cat} value={cat}>{cat}</option>
+              {filterOptions.authors.map(opt => (
+                <option key={opt} value={opt}>{opt}</option>
+              ))}
+            </select>
+          </div>
+
+          <div className="filter-group">
+            <label htmlFor="epoch">Epoka:</label>
+            <select
+              id="epoch"
+              value={filters.epoch}
+              onChange={(e) => handleFilterChange('epoch', e.target.value)}
+            >
+              {filterOptions.epochs.map(opt => (
+                <option key={opt} value={opt}>{opt}</option>
+              ))}
+            </select>
+          </div>
+
+          <div className="filter-group">
+            <label htmlFor="genre">Gatunek:</label>
+            <select
+              id="genre"
+              value={filters.genre}
+              onChange={(e) => handleFilterChange('genre', e.target.value)}
+            >
+              {filterOptions.genres.map(opt => (
+                <option key={opt} value={opt}>{opt}</option>
+              ))}
+            </select>
+          </div>
+
+          <div className="filter-group">
+            <label htmlFor="kind">Rodzaj:</label>
+            <select
+              id="kind"
+              value={filters.kind}
+              onChange={(e) => handleFilterChange('kind', e.target.value)}
+            >
+              {filterOptions.kinds.map(opt => (
+                <option key={opt} value={opt}>{opt}</option>
               ))}
             </select>
           </div>
@@ -68,9 +119,29 @@ function ProductListingPage() {
           ))}
         </div>
 
-        {products.length === 0 && (
+        {products.length === 0 ? (
           <div className="no-products">
             <p>Brak produktów w wybranej kategorii.</p>
+          </div>
+        ) : (
+          <div className="pagination">
+            <button 
+              disabled={page === 1} 
+              onClick={() => setPage(p => p - 1)}
+              className="pagination-button"
+            >
+              Poprzednia
+            </button>
+            <span className="pagination-info">
+              Strona {page} z {totalPages}
+            </span>
+            <button 
+              disabled={page === totalPages} 
+              onClick={() => setPage(p => p + 1)}
+              className="pagination-button"
+            >
+              Następna
+            </button>
           </div>
         )}
       </div>

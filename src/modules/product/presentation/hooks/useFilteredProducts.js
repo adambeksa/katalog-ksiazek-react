@@ -1,31 +1,39 @@
 import { useState, useEffect } from 'react'
 import { productFacade } from '../../application/ProductFacade'
 
-/**
- * Hook do filtrowania i sortowania produktów
- */
-export function useFilteredProducts(category = 'Wszystkie', sortBy = 'name') {
+export function useFilteredProducts(filters = {}, sortBy = 'name') {
   const [products, setProducts] = useState([])
-  const [categories, setCategories] = useState([])
+  const [filterOptions, setFilterOptions] = useState({
+    authors: [],
+    epochs: [],
+    genres: [],
+    kinds: []
+  })
+  const [page, setPage] = useState(1)
+  const [totalPages, setTotalPages] = useState(1)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
+  // Reset page when filters or sort change
   useEffect(() => {
+    setPage(1)
+  }, [JSON.stringify(filters), sortBy])
 
-
+  useEffect(() => {
     const loadData = async () => {
       try {
         setLoading(true)
         setError(null)
 
-        // Pobierz kategorie i produkty równolegle
-        const [categoriesData, productsData] = await Promise.all([
-          productFacade.getCategories(),
-          productFacade.filterProducts({ category, sortBy })
+        // Pobierz opcje filtrów i produkty równolegle
+        const [options, { items, total }] = await Promise.all([
+          productFacade.getFilterOptions(),
+          productFacade.filterProducts({ filters, sortBy, page })
         ])
 
-        setCategories(categoriesData)
-        setProducts(productsData)
+        setFilterOptions(options)
+        setProducts(items)
+        setTotalPages(Math.ceil(total / 20))
       } catch (err) {
         setError(err.message)
       } finally {
@@ -34,9 +42,10 @@ export function useFilteredProducts(category = 'Wszystkie', sortBy = 'name') {
     }
 
     loadData()
-  }, [category, sortBy])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [JSON.stringify(filters), sortBy, page])
 
-  return { products, categories, loading, error }
+  return { products, filterOptions, loading, error, page, setPage, totalPages }
 }
 
 

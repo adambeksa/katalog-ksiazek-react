@@ -52,12 +52,15 @@ function ProductCardPage() {
 
         <div className="product-details">
           <div className="product-image-section">
-            <div className="product-main-image">{product.image}</div>
+            <img className="product-main-image" src={product.image} alt={product.name}/>
             <div className="product-badge">{product.category}</div>
           </div>
 
           <div className="product-info-section">
             <h1>{product.name}</h1>
+            {product.salePrice != null && (
+              <p className="product-salePrice">{product.getFormattedSalePrice()}</p>
+            )}
             <p className="product-price-large">{product.getFormattedPrice()}</p>
             
             <div className="stock-status">

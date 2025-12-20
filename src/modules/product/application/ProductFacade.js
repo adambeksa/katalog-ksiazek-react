@@ -14,21 +14,45 @@ export class ProductFacade {
     return await this.productDataService.getById(id)
   }
 
-  async filterProducts({ category, sortBy = 'name' }) {
-    let products
+  async filterProducts({ filters = {}, sortBy = 'name', page = 1, limit = 20 }) {
+    let products = await this.productDataService.getAll()
 
-    if (category && category !== 'Wszystkie') {
-      products = await this.productDataService.getByCategory(category)
-    } else {
-      products = await this.productDataService.getAll()
+    if (filters.author && filters.author !== 'Wszystkie') {
+      products = products.filter(p => p.author === filters.author)
+    }
+    if (filters.epoch && filters.epoch !== 'Wszystkie') {
+      products = products.filter(p => p.epoch === filters.epoch)
+    }
+    if (filters.genre && filters.genre !== 'Wszystkie') {
+      products = products.filter(p => p.genre === filters.genre)
+    }
+    if (filters.kind && filters.kind !== 'Wszystkie') {
+      products = products.filter(p => p.kind === filters.kind)
     }
 
-    return this.sortProducts(products, sortBy)
+    const sortedProducts = this.sortProducts(products, sortBy)
+    const total = sortedProducts.length
+    const start = (page - 1) * limit
+    const end = start + limit
+    const items = sortedProducts.slice(start, end)
+
+    return { items, total }
   }
 
-  async getCategories() {
-    const categories = await this.productDataService.getCategories()
-    return ['Wszystkie', ...categories]
+  async getFilterOptions() {
+    const [authors, epochs, genres, kinds] = await Promise.all([
+      this.productDataService.getAuthors(),
+      this.productDataService.getEpochs(),
+      this.productDataService.getGenres(),
+      this.productDataService.getKinds()
+    ])
+    
+    return {
+      authors: ['Wszystkie', ...authors],
+      epochs: ['Wszystkie', ...epochs],
+      genres: ['Wszystkie', ...genres],
+      kinds: ['Wszystkie', ...kinds]
+    }
   }
 
   sortProducts(products, sortBy) {
