@@ -64,7 +64,7 @@
   font-size: 2rem;
   font-weight: bold;
   color: #667eea;
-  margin: 1rem 0;
+  margin-bottom: 1rem;
 }
 
 .product-salePrice + .product-price-large  {
@@ -80,7 +80,7 @@
 }
 
 .stock-status {
-  margin: 1rem 0;
+  margin-bottom: 1rem;
 }
 
 .in-stock {
@@ -96,10 +96,8 @@
 }
 
 .product-description-section {
-  margin: 2rem 0;
+  margin-bottom: 2rem;
   padding: 1.5rem 0;
-  border-top: 1px solid #e0e0e0;
-  border-bottom: 1px solid #e0e0e0;
 }
 
 .product-description-section h3 {
@@ -113,7 +111,7 @@
 }
 
 .product-features {
-  margin: 2rem 0;
+  margin-bottom: 2rem;
 }
 
 .product-features h3 {
@@ -142,7 +140,6 @@
 }
 
 .product-actions {
-  margin-top: 2rem;
   padding-top: 2rem;
   border-top: 1px solid #e0e0e0;
 }

@@ -16,7 +16,7 @@ export class Product {
     genre,
     kind,
     inStock = true,
-    features = []
+    features = [],
   }) {
     this.id = id
     this.name = name

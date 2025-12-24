@@ -1,8 +1,6 @@
 
 import axios from 'axios'
-import AxiosMockAdapter from 'axios-mock-adapter'
 import { Product } from '../../domain/Product'
-import { mockProductsData } from '../mockedData/mockProducts'
 
 export class ProductDataService {
   constructor() {
@@ -50,7 +48,7 @@ export class ProductDataService {
       epoch: data.epoch,
       genre: data.genre,
       kind: data.kind,
-      inStock: true
+      inStock: true,
     })
   }
 

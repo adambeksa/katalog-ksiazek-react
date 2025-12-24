@@ -76,15 +76,6 @@ function ProductCardPage() {
               <p>{product.fullDescription}</p>
             </div>
 
-            <div className="product-features">
-              <h3>Specyfikacja</h3>
-              <ul>
-                {product.features.map((feature, index) => (
-                  <li key={index}>{feature}</li>
-                ))}
-              </ul>
-            </div>
-
             <div className="product-actions">
               <div className="quantity-selector">
                 <label>Ilość:</label>
