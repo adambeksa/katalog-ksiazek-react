@@ -39,7 +39,7 @@
 .product-description {
   color: #666;
   font-size: 0.9rem;
-  margin: 0.5rem 0;
+  margin-bottom: 0.5rem;
   flex: 1;
 }
 
@@ -47,7 +47,7 @@
   color: #667eea;
   font-size: 0.85rem;
   font-weight: 600;
-  margin: 0.5rem 0;
+  margin-bottom: 0.5rem;
 }
 
 .product-price {
