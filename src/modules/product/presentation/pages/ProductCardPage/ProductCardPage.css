@@ -67,18 +67,6 @@
   margin-bottom: 1rem;
 }
 
-.product-salePrice + .product-price-large  {
-  text-decoration: line-through;
-  color: #999;
-}
-
-.product-salePrice {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #ce190c;
-  margin-bottom: 1rem;
-}
-
 .stock-status {
   margin-bottom: 1rem;
 }

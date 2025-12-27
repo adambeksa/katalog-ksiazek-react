@@ -2,6 +2,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import './ProductCardPage.css'
 import { useProductQuery } from '../../hooks/useProductQuery'
+import ProductPrice from '../../components/ProductPrice/ProductPrice'
 
 function ProductCardPage() {
   const { id } = useParams()
@@ -58,10 +59,7 @@ function ProductCardPage() {
 
           <div className="product-info-section">
             <h1>{product.name}</h1>
-            {product.salePrice != null && (
-              <p className="product-salePrice">{product.getFormattedSalePrice()}</p>
-            )}
-            <p className="product-price-large">{product.getFormattedPrice()}</p>
+            <ProductPrice product={product} priceClassName="product-price-large" />
             
             <div className="stock-status">
               {product.isAvailable() ? (

@@ -1,0 +1,16 @@
+.product-salePrice {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ce190c;
+}
+
+.product-salePrice + .product-price-large {
+  text-decoration: line-through;
+  color: #999;
+}
+
+.product-salePrice + .product-price {
+  text-decoration: line-through;
+  color: #999;
+  font-size: 1rem;
+}
