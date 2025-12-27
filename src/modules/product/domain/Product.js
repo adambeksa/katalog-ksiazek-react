@@ -37,6 +37,7 @@ export class Product {
     this.audioDirector = audioDirector
     this.audioArtist = audioArtist
     this.formats = {} // e.g. { epub: 'url', pdf: 'url' }
+    this.audioFormats = {} // e.g. { mp3: [{name: 'Chapter 1', url: 'url'}], ogg: [...] }
   }
 
   /**

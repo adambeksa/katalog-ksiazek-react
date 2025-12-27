@@ -62,6 +62,21 @@ export class ProductDataService {
       xml: data.xml
     }
 
+    // Map audio formats from media
+    if (data.media && data.media.length > 0) {
+      data.media.forEach(medium => {
+        if (medium.type && medium.url) {
+          if (!product.audioFormats[medium.type]) {
+            product.audioFormats[medium.type] = []
+          }
+          product.audioFormats[medium.type].push({
+            name: medium.name || medium.type,
+            url: medium.url
+          })
+        }
+      })
+    }
+
     return product
   }
 

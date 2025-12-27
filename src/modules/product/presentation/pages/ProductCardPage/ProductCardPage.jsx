@@ -10,6 +10,7 @@ function ProductCardPage() {
   const { id } = useParams()
   const navigate = useNavigate()
   const [showDownloadModal, setShowDownloadModal] = useState(false)
+  const [showAudioModal, setShowAudioModal] = useState(false)
   const { data: product, isLoading, error } = useProductQuery(id)
 
 
@@ -41,6 +42,13 @@ function ProductCardPage() {
   const handleDownload = () => {
     setShowDownloadModal(true)
   }
+
+  const handleAudioDownload = () => {
+    setShowAudioModal(true)
+  }
+
+  // Check if product has any audio formats
+  const hasAudio = product && product.audioFormats && Object.keys(product.audioFormats).length > 0
 
   return (
     <div className="product-card-page">
@@ -89,6 +97,15 @@ function ProductCardPage() {
               >
                 {product.isAvailable() ? 'Przeczytaj książkę' : 'Produkt niedostępny'}
               </button>
+              
+              {hasAudio && (
+                <button
+                  onClick={handleAudioDownload}
+                  className="audio-button"
+                >
+                  Posłuchaj audiobooka
+                </button>
+              )}
             </div>
           </div>
         </div>
@@ -98,6 +115,15 @@ function ProductCardPage() {
         <DownloadModal 
           product={product} 
           onClose={() => setShowDownloadModal(false)} 
+        />
+      )}
+
+      {showAudioModal && (
+        <DownloadModal 
+          product={product} 
+          onClose={() => setShowAudioModal(false)}
+          title="Wybierz format audiobooka"
+          formats={product.audioFormats}
         />
       )}
     </div>

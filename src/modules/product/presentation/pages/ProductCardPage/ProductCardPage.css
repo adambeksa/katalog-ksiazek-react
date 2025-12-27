@@ -163,6 +163,24 @@
   cursor: not-allowed;
 }
 
+.audio-button {
+  width: 100%;
+  padding: 1rem 2rem;
+  background-color: #27ae60;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 1rem;
+}
+
+.audio-button:hover {
+  background-color: #219150;
+}
+
 .product-not-found {
   text-align: center;
   padding: 4rem 2rem;
