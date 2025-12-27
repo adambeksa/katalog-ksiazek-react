@@ -4,6 +4,7 @@ import { useProductQuery } from '../../hooks/useProductQuery'
 import Breadcrumbs from '../../../../shared/ui/components/Breadcrumbs/Breadcrumbs'
 import { useState } from 'react'
 import DownloadModal from '../../components/DownloadModal/DownloadModal'
+import ProductAttribution from '../../components/ProductAttribution/ProductAttribution'
 
 function ProductCardPage() {
   const { id } = useParams()
@@ -77,6 +78,8 @@ function ProductCardPage() {
                 dangerouslySetInnerHTML={{ __html: product.fullDescription }} 
               />
             </div>
+
+            <ProductAttribution product={product} />
 
             <div className="product-actions">
               <button

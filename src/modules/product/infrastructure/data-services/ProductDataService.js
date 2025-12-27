@@ -29,6 +29,11 @@ export class ProductDataService {
       ? data.kinds[0].name 
       : (data.kind || '')
 
+    // Extract audio information from media array (first mp3 entry)
+    const audioMedia = data.media && data.media.find(m => m.type === 'mp3')
+    const audioDirector = audioMedia?.director || ''
+    const audioArtist = audioMedia?.artist || ''
+
     const product = new Product({
       id: data.slug,
       name: data.title,
@@ -40,6 +45,11 @@ export class ProductDataService {
       genre: genre,
       kind: kind,
       inStock: true,
+      url: data.url || '',
+      license: data.license || 'Domena publiczna',  //TODO: connect real license
+      licenseDescription: data.license_description || '',  //TODO: connect real license
+      audioDirector: audioDirector,
+      audioArtist: audioArtist,
     })
 
     product.formats = {

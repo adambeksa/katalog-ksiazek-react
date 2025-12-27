@@ -14,6 +14,11 @@ export class Product {
     kind,
     inStock = true,
     features = [],
+    url = '',
+    license = '',
+    licenseDescription = '',
+    audioDirector = '',
+    audioArtist = '',
   }) {
     this.id = id
     this.name = name
@@ -26,6 +31,11 @@ export class Product {
     this.kind = kind
     this.inStock = inStock
     this.features = features
+    this.url = url
+    this.license = license
+    this.licenseDescription = licenseDescription
+    this.audioDirector = audioDirector
+    this.audioArtist = audioArtist
     this.formats = {} // e.g. { epub: 'url', pdf: 'url' }
   }
 
