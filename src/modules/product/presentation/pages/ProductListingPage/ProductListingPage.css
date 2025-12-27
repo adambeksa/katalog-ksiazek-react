@@ -9,43 +9,7 @@
   color: #2c3e50;
 }
 
-.filters {
-  display: flex;
-  gap: 2rem;
-  margin-bottom: 2rem;
-  padding: 1.5rem;
-  background: white;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  flex-wrap: wrap;
-}
 
-.filter-group {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.filter-group label {
-  font-weight: 600;
-  color: #2c3e50;
-}
-
-.filter-group select {
-  padding: 0.5rem 1rem;
-  border: 2px solid #e0e0e0;
-  border-radius: 5px;
-  font-size: 1rem;
-  background: white;
-  cursor: pointer;
-  transition: border-color 0.3s;
-}
-
-.filter-group select:hover,
-.filter-group select:focus {
-  border-color: #667eea;
-  outline: none;
-}
 
 .products-grid {
   display: grid;

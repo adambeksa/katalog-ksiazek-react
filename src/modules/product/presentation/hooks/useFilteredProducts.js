@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { productFacade } from '../../application/ProductFacade'
 
-export function useFilteredProducts(filters = {}, sortBy = 'name') {
+export function useFilteredProducts(filters = {}) {
   const [products, setProducts] = useState([])
   const [filterOptions, setFilterOptions] = useState({
     authors: [],
@@ -14,10 +14,10 @@ export function useFilteredProducts(filters = {}, sortBy = 'name') {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
-  // Reset page when filters or sort change
+  // Reset page when filters change
   useEffect(() => {
     setPage(1)
-  }, [JSON.stringify(filters), sortBy])
+  }, [JSON.stringify(filters)])
 
   useEffect(() => {
     const loadData = async () => {
@@ -28,7 +28,7 @@ export function useFilteredProducts(filters = {}, sortBy = 'name') {
         // Pobierz opcje filtrów i produkty równolegle
         const [options, { items, total }] = await Promise.all([
           productFacade.getFilterOptions(),
-          productFacade.filterProducts({ filters, sortBy, page })
+          productFacade.filterProducts({ filters, page })
         ])
 
         setFilterOptions(options)
@@ -43,7 +43,7 @@ export function useFilteredProducts(filters = {}, sortBy = 'name') {
 
     loadData()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [JSON.stringify(filters), sortBy, page])
+  }, [JSON.stringify(filters), page])
 
   return { products, filterOptions, loading, error, page, setPage, totalPages }
 }

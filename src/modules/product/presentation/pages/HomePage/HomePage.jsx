@@ -44,7 +44,7 @@ function HomePage() {
                 <div key={product.id} className="product-preview">
                   <img className="product-image-placeholder" src={product.image} alt={product.name} />
                   <h4>{product.name}</h4>
-                  <p className="price">{product.getFormattedPrice()}</p>
+
                   <Link to={`/produkt/${product.id}`} className="view-button">
                     Zobacz szczegóły
                   </Link>

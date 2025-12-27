@@ -12,44 +12,47 @@ export class ProductDataService {
     })
   }
 
-  /**
-   * Generuje losową cenę dla książki (bo API nie zwraca ceny)
-   */
-  generatePrice(id) {
-    // Prosty algorytm haszujący string na liczbę, żeby cena była stała dla danego ID
-    let hash = 0
-    const str = String(id)
-    for (let i = 0; i < str.length; i++) {
-      const char = str.charCodeAt(i)
-      hash = ((hash << 5) - hash) + char
-      hash = hash & hash // Convert to 32bit integer
-    }
-    const normalized = Math.abs(hash) % 8000 // 0 - 7999
-    return 20 + (normalized / 100) // 20.00 - 99.99
-  }
-
-  /**
-   * Konwertuje dane z API na encję Product
-   */
   mapToProduct(data) {
-    const price = this.generatePrice(data.slug)
-    const salePrice =  0  // MOCK - All Books are for free
+    const author = data.authors && data.authors.length > 0 
+      ? data.authors.map(a => a.name).join(', ') 
+      : (data.author || 'Autor nieznany')
+    
+    const epoch = data.epochs && data.epochs.length > 0 
+      ? data.epochs[0].name 
+      : (data.epoch || '')
+    
+    const genre = data.genres && data.genres.length > 0 
+      ? data.genres[0].name 
+      : (data.genre || '')
+    
+    const kind = data.kinds && data.kinds.length > 0 
+      ? data.kinds[0].name 
+      : (data.kind || '')
 
-    return new Product({
+    const product = new Product({
       id: data.slug,
       name: data.title,
-      price: price,
-      salePrice: salePrice,
       image: data.simple_thumb || data.cover,
-      description: `Autor: ${data.author}, Epoka: ${data.epoch}, Rodzaj: ${data.kind}, Gatunek: ${data.genre}`,
-      fullDescription: `Tytuł: ${data.title}\nAutor: ${data.author}\nEpoka: ${data.epoch}\nRodzaj: ${data.kind}\nGatunek: ${data.genre}\n\n${data.fragment_data ? data.fragment_data.html : ''}`,
-      category: 'Książki', // Domyślna kategoria dla sklepu
-      author: data.author,
-      epoch: data.epoch,
-      genre: data.genre,
-      kind: data.kind,
+      description: `<strong>Autor:</strong> ${author}<br/><strong>Epoka:</strong> ${epoch}<br/><strong>Rodzaj:</strong> ${kind}<br/><strong>Gatunek:</strong> ${genre}`,
+      fullDescription: `<strong>Tytuł:</strong> ${data.title}<br/><strong>Autor:</strong> ${author}<br/><strong>Epoka:</strong> ${epoch}<br/><strong>Rodzaj:</strong> ${kind}<br/><strong>Gatunek:</strong> ${genre}<br/><br/>${data.fragment_data ? data.fragment_data.html : ''}`,
+      author: author,
+      epoch: epoch,
+      genre: genre,
+      kind: kind,
       inStock: true,
     })
+
+    product.formats = {
+      epub: data.epub,
+      mobi: data.mobi,
+      pdf: data.pdf,
+      html: data.html,
+      txt: data.txt,
+      fb2: data.fb2,
+      xml: data.xml
+    }
+
+    return product
   }
 
   async getAll() {

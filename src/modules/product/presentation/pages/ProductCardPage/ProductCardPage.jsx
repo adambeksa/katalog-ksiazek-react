@@ -1,13 +1,14 @@
 import { useParams, Link, useNavigate } from 'react-router-dom'
-import { useState } from 'react'
 import './ProductCardPage.css'
 import { useProductQuery } from '../../hooks/useProductQuery'
-import ProductPrice from '../../components/ProductPrice/ProductPrice'
+import Breadcrumbs from '../../../../shared/ui/components/Breadcrumbs/Breadcrumbs'
+import { useState } from 'react'
+import DownloadModal from '../../components/DownloadModal/DownloadModal'
 
 function ProductCardPage() {
   const { id } = useParams()
   const navigate = useNavigate()
-  const [quantity, setQuantity] = useState(1)
+  const [showDownloadModal, setShowDownloadModal] = useState(false)
   const { data: product, isLoading, error } = useProductQuery(id)
 
 
@@ -36,17 +37,18 @@ function ProductCardPage() {
     )
   }
 
-  const handleAddToCart = () => {
-    alert(`Dodano ${quantity} szt. produktu "${product.name}" do koszyka!`)
-  }
-
-  const handleQuantityChange = (delta) => {
-    setQuantity(prev => Math.max(1, prev + delta))
+  const handleDownload = () => {
+    setShowDownloadModal(true)
   }
 
   return (
     <div className="product-card-page">
       <div className="container">
+        <Breadcrumbs items={[
+          { label: 'Strona Główna', path: '/' },
+          { label: 'Katalog książek', path: '/products' },
+          { label: product.name }
+        ]} />
         <button onClick={() => navigate(-1)} className="back-link">
           ← Powrót
         </button>
@@ -54,12 +56,11 @@ function ProductCardPage() {
         <div className="product-details">
           <div className="product-image-section">
             <img className="product-main-image" src={product.image} alt={product.name}/>
-            <div className="product-badge">{product.category}</div>
           </div>
 
           <div className="product-info-section">
+            <h2>{product.author}</h2>
             <h1>{product.name}</h1>
-            <ProductPrice product={product} priceClassName="product-price-large" />
             
             <div className="stock-status">
               {product.isAvailable() ? (
@@ -71,30 +72,31 @@ function ProductCardPage() {
 
             <div className="product-description-section">
               <h3>Opis produktu</h3>
-              <p>{product.fullDescription}</p>
+              <div 
+                className="product-description-content"
+                dangerouslySetInnerHTML={{ __html: product.fullDescription }} 
+              />
             </div>
 
             <div className="product-actions">
-              <div className="quantity-selector">
-                <label>Ilość:</label>
-                <div className="quantity-controls">
-                  <button onClick={() => handleQuantityChange(-1)}>-</button>
-                  <span>{quantity}</span>
-                  <button onClick={() => handleQuantityChange(1)}>+</button>
-                </div>
-              </div>
-
               <button
-                onClick={handleAddToCart}
+                onClick={handleDownload}
                 disabled={!product.isAvailable()}
-                className="add-to-cart-button"
+                className="read-button"
               >
-                {product.isAvailable() ? 'Dodaj do koszyka' : 'Produkt niedostępny'}
+                {product.isAvailable() ? 'Przeczytaj książkę' : 'Produkt niedostępny'}
               </button>
             </div>
           </div>
         </div>
       </div>
+
+      {showDownloadModal && (
+        <DownloadModal 
+          product={product} 
+          onClose={() => setShowDownloadModal(false)} 
+        />
+      )}
     </div>
   )
 }

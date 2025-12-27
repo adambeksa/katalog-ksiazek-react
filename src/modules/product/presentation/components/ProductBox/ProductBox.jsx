@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom'
-import ProductPrice from '../ProductPrice/ProductPrice'
 import './ProductBox.css'
 
 /**
@@ -16,9 +15,10 @@ function ProductBox({ product }) {
       <img className="product-image" src={product.image} alt={product.name} />
       <div className="product-info">
         <h3>{product.name}</h3>
-        <p className="product-description">{product.description}</p>
-        <p className="product-category">{product.category}</p>
-        <ProductPrice product={product} priceClassName="product-price" />
+        <div 
+          className="product-description"
+          dangerouslySetInnerHTML={{ __html: product.description }}
+        />
         <Link to={`/produkt/${product.id}`} className="product-link">
           Zobacz szczegóły
         </Link>

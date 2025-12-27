@@ -55,17 +55,16 @@
 }
 
 .product-info-section h1 {
-  font-size: 2.5rem;
-  margin: 0 0 1rem 0;
+  font-size: 2rem;
   color: #2c3e50;
 }
 
-.product-price-large {
-  font-size: 2rem;
-  font-weight: bold;
-  color: #667eea;
-  margin-bottom: 1rem;
+.product-info-section h2 {
+  font-size: 1rem;
+  color: #2c3e50;
 }
+
+
 
 .stock-status {
   margin-bottom: 1rem;
@@ -85,7 +84,6 @@
 
 .product-description-section {
   margin-bottom: 2rem;
-  padding: 1.5rem 0;
 }
 
 .product-description-section h3 {
@@ -93,7 +91,7 @@
   margin-bottom: 1rem;
 }
 
-.product-description-section p {
+.product-description-section .product-description-content {
   color: #666;
   line-height: 1.6;
 }
@@ -143,36 +141,7 @@
   color: #2c3e50;
 }
 
-.quantity-controls {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.quantity-controls button {
-  width: 40px;
-  height: 40px;
-  border: 2px solid #e0e0e0;
-  background: white;
-  border-radius: 5px;
-  font-size: 1.2rem;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-.quantity-controls button:hover {
-  border-color: #667eea;
-  color: #667eea;
-}
-
-.quantity-controls span {
-  font-size: 1.2rem;
-  font-weight: 600;
-  min-width: 30px;
-  text-align: center;
-}
-
-.add-to-cart-button {
+.read-button {
   width: 100%;
   padding: 1rem 2rem;
   background-color: #667eea;
@@ -185,11 +154,11 @@
   transition: background-color 0.3s;
 }
 
-.add-to-cart-button:hover:not(:disabled) {
+.read-button:hover:not(:disabled) {
   background-color: #5568d3;
 }
 
-.add-to-cart-button:disabled {
+.read-button:disabled {
   background-color: #bdc3c7;
   cursor: not-allowed;
 }

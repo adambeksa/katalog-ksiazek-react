@@ -7,11 +7,11 @@ function Layout({ children }) {
       <header className="header">
         <div className="container">
           <Link to="/" className="logo">
-            <h1>Sklep Internetowy</h1>
+            <h1>Biblioteka ABE</h1>
           </Link>
           <nav className="nav">
             <Link to="/">Strona Główna</Link>
-            <Link to="/produkty">Produkty</Link>
+            <Link to="/products">Katalog książek</Link>
           </nav>
         </div>
       </header>
@@ -20,7 +20,7 @@ function Layout({ children }) {
       </main>
       <footer className="footer">
         <div className="container">
-          <p>&copy; 2024 Sklep Internetowy. Wszystkie prawa zastrzeżone.</p>
+          <p>&copy; PetProject Biblioteka ABE 2025</p>
         </div>
       </footer>
     </div>

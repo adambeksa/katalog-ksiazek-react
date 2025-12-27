@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { useFilteredProducts } from '../../hooks/useFilteredProducts'
 import ProductBox from '../../components/ProductBox/ProductBox'
+import Breadcrumbs from '../../../../shared/ui/components/Breadcrumbs/Breadcrumbs'
+import ProductFilters from '../../components/ProductFilters/ProductFilters'
 import './ProductListingPage.css'
 
 function ProductListingPage() {
@@ -10,9 +12,7 @@ function ProductListingPage() {
     genre: 'Wszystkie',
     kind: 'Wszystkie'
   })
-  const [sortBy, setSortBy] = useState('name')
-  
-  const { products, filterOptions, loading, error, page, setPage, totalPages } = useFilteredProducts(filters, sortBy)
+  const { products, filterOptions, loading, error, page, setPage, totalPages } = useFilteredProducts(filters)
 
   const handleFilterChange = (key, value) => {
     setFilters(prev => ({
@@ -44,74 +44,16 @@ function ProductListingPage() {
   return (
     <div className="product-listing">
       <div className="container">
-        <h1>Nasze produkty</h1>
-
-        <div className="filters">
-          <div className="filter-group">
-            <label htmlFor="author">Autor:</label>
-            <select
-              id="author"
-              value={filters.author}
-              onChange={(e) => handleFilterChange('author', e.target.value)}
-            >
-              {filterOptions.authors.map(opt => (
-                <option key={opt} value={opt}>{opt}</option>
-              ))}
-            </select>
-          </div>
-
-          <div className="filter-group">
-            <label htmlFor="epoch">Epoka:</label>
-            <select
-              id="epoch"
-              value={filters.epoch}
-              onChange={(e) => handleFilterChange('epoch', e.target.value)}
-            >
-              {filterOptions.epochs.map(opt => (
-                <option key={opt} value={opt}>{opt}</option>
-              ))}
-            </select>
-          </div>
-
-          <div className="filter-group">
-            <label htmlFor="genre">Gatunek:</label>
-            <select
-              id="genre"
-              value={filters.genre}
-              onChange={(e) => handleFilterChange('genre', e.target.value)}
-            >
-              {filterOptions.genres.map(opt => (
-                <option key={opt} value={opt}>{opt}</option>
-              ))}
-            </select>
-          </div>
-
-          <div className="filter-group">
-            <label htmlFor="kind">Rodzaj:</label>
-            <select
-              id="kind"
-              value={filters.kind}
-              onChange={(e) => handleFilterChange('kind', e.target.value)}
-            >
-              {filterOptions.kinds.map(opt => (
-                <option key={opt} value={opt}>{opt}</option>
-              ))}
-            </select>
-          </div>
-
-          <div className="filter-group">
-            <label htmlFor="sort">Sortuj według:</label>
-            <select
-              id="sort"
-              value={sortBy}
-              onChange={(e) => setSortBy(e.target.value)}
-            >
-              <option value="name">Nazwa A-Z</option>
-              <option value="price-asc">Cena: od najniższej</option>
-              <option value="price-desc">Cena: od najwyższej</option>
-            </select>
-          </div>
-        </div>
+        <Breadcrumbs items={[
+          { label: 'Strona Główna', path: '/' },
+          { label: 'Katalog książek' }
+        ]} />
+        
+        <ProductFilters 
+          filters={filters}
+          filterOptions={filterOptions}
+          onFilterChange={handleFilterChange}
+        />
 
         <div className="products-grid">
           {products.map(product => (

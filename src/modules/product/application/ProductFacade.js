@@ -14,7 +14,7 @@ export class ProductFacade {
     return await this.productDataService.getById(id)
   }
 
-  async filterProducts({ filters = {}, sortBy = 'name', page = 1, limit = 20 }) {
+  async filterProducts({ filters = {}, page = 1, limit = 20 }) {
     let products = await this.productDataService.getAll()
 
     if (filters.author && filters.author !== 'Wszystkie') {
@@ -30,11 +30,10 @@ export class ProductFacade {
       products = products.filter(p => p.kind === filters.kind)
     }
 
-    const sortedProducts = this.sortProducts(products, sortBy)
-    const total = sortedProducts.length
+    const total = products.length
     const start = (page - 1) * limit
     const end = start + limit
-    const items = sortedProducts.slice(start, end)
+    const items = products.slice(start, end)
 
     return { items, total }
   }
@@ -52,21 +51,6 @@ export class ProductFacade {
       epochs: ['Wszystkie', ...epochs],
       genres: ['Wszystkie', ...genres],
       kinds: ['Wszystkie', ...kinds]
-    }
-  }
-
-  sortProducts(products, sortBy) {
-    const sorted = [...products]
-
-    switch (sortBy) {
-      case 'name':
-        return sorted.sort((a, b) => a.name.localeCompare(b.name))
-      case 'price-asc':
-        return sorted.sort((a, b) => a.price - b.price)
-      case 'price-desc':
-        return sorted.sort((a, b) => b.price - a.price)
-      default:
-        return sorted
     }
   }
 }
