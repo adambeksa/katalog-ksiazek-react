@@ -1,3 +1,7 @@
+import { IProduct, AudioFormat } from './interfaces/IProduct'
+
+export type { AudioFormat } // Re-export for compatibility if needed elsewhere
+
 /**
  * Encja produktu - reprezentuje domenę produktu w systemie
  */
@@ -17,12 +21,7 @@ export interface ProductConstructorParams {
   audioArtist?: string;
 }
 
-export interface AudioFormat {
-  name: string;
-  url: string;
-}
-
-export class Product {
+export class Product implements IProduct {
   id: string;
   name: string;
   image: string;
@@ -38,7 +37,6 @@ export class Product {
   audioArtist: string;
   formats: Record<string, string>;
   audioFormats: Record<string, AudioFormat[]>;
-  salePrice?: number;
 
   constructor({
     id,
@@ -54,8 +52,7 @@ export class Product {
     license = '',
     audioDirector = '',
     audioArtist = '',
-    salePrice,
-  }: ProductConstructorParams & { salePrice?: number }) {
+  }: ProductConstructorParams) {
     this.id = id
     this.name = name
     this.image = image
@@ -69,16 +66,7 @@ export class Product {
     this.license = license
     this.audioDirector = audioDirector
     this.audioArtist = audioArtist
-    this.salePrice = salePrice
     this.formats = {} // e.g. { epub: 'url', pdf: 'url' }
     this.audioFormats = {} // e.g. { mp3: [{name: 'Chapter 1', url: 'url'}], ogg: [...] }
-  }
-
-  getFormattedPrice(): string {
-    return 'Darmowe'
-  }
-
-  getFormattedSalePrice(): string {
-    return this.salePrice ? `${this.salePrice} PLN` : ''
   }
 }
