@@ -5,7 +5,17 @@ import './ProductBox.css'
  * Komponent prezentacyjny boxu produktu w liście
  * Używany w liście produktów
  */
-function ProductBox({ product }) {
+import { Product } from '../../../domain/Product'
+
+interface ProductBoxProps {
+  product: Product;
+}
+
+/**
+ * Komponent prezentacyjny boxu produktu w liście
+ * Używany w liście produktów
+ */
+function ProductBox({ product }: ProductBoxProps) {
   if (!product) {
     return null
   }

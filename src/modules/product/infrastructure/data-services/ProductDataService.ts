@@ -1,8 +1,49 @@
 
-import axios from 'axios'
+import axios, { AxiosInstance } from 'axios'
 import { Product } from '../../domain/Product'
 
+interface ApiAuthor {
+  name: string;
+}
+interface ApiTerm {
+  name: string;
+}
+interface ApiMedia {
+  type: string;
+  url: string;
+  director?: string;
+  artist?: string;
+  name?: string;
+}
+interface ApiProductData {
+  slug: string;
+  title: string;
+  simple_thumb: string;
+  fragment_data?: { html: string };
+  authors?: ApiAuthor[];
+  author?: string;
+  epochs?: ApiTerm[];
+  epoch?: string;
+  genres?: ApiTerm[];
+  genre?: string;
+  kinds?: ApiTerm[];
+  kind?: string;
+  url?: string;
+  license?: string;
+  epub?: string;
+  mobi?: string;
+  pdf?: string;
+  html?: string;
+  txt?: string;
+  fb2?: string;
+  xml?: string;
+  media?: ApiMedia[];
+}
+
 export class ProductDataService {
+  private client: AxiosInstance;
+  private productsCache: Promise<Product[]> | null = null;
+
   constructor() {
     this.client = axios.create({
       baseURL: 'https://wolnelektury.pl/api',
@@ -12,7 +53,7 @@ export class ProductDataService {
     })
   }
 
-  mapToProduct(data) {
+  mapToProduct(data: ApiProductData): Product {
     const author = data.authors && data.authors.length > 0 
       ? data.authors.map(a => a.name).join(', ') 
       : (data.author || 'Autor nieznany')
@@ -50,13 +91,13 @@ export class ProductDataService {
     })
 
     product.formats = {
-      epub: data.epub,
-      mobi: data.mobi,
-      pdf: data.pdf,
-      html: data.html,
-      txt: data.txt,
-      fb2: data.fb2,
-      xml: data.xml
+      epub: data.epub || '',
+      mobi: data.mobi || '',
+      pdf: data.pdf || '',
+      html: data.html || '',
+      txt: data.txt || '',
+      fb2: data.fb2 || '',
+      xml: data.xml || ''
     }
 
     // Map audio formats from media
@@ -77,23 +118,23 @@ export class ProductDataService {
     return product
   }
 
-  async getAll() {
+  async getAll(): Promise<Product[]> {
     if (!this.productsCache) {
       this.productsCache = this.client.get('/books/')
-        .then(response => response.data.map(data => this.mapToProduct(data)))
+        .then(response => response.data.map((data: ApiProductData) => this.mapToProduct(data)))
         .catch(error => {
           this.productsCache = null // Clear cache on error so we can try again
           throw error
         })
     }
-    return this.productsCache
+    return this.productsCache as Promise<Product[]>
   }
 
-  async getById(id) {
+  async getById(id: string): Promise<Product | null> {
     try {
       const response = await this.client.get(`/books/${id}/`)
       return this.mapToProduct(response.data)
-    } catch (error) {
+    } catch (error: any) {
       if (error.response && error.response.status === 404) {
         return null
       }
@@ -104,22 +145,22 @@ export class ProductDataService {
   // Metody pomocnicze do filtrów (pobieramy wszystko i filtrujemy w fasadzie, 
   // ale tutaj możemy przygotować listy unikalnych wartości)
   
-  async getAuthors() {
+  async getAuthors(): Promise<string[]> {
     const products = await this.getAll()
     return Array.from(new Set(products.map(p => p.author))).sort()
   }
 
-  async getEpochs() {
+  async getEpochs(): Promise<string[]> {
     const products = await this.getAll()
     return Array.from(new Set(products.map(p => p.epoch))).sort()
   }
 
-  async getGenres() {
+  async getGenres(): Promise<string[]> {
     const products = await this.getAll()
     return Array.from(new Set(products.map(p => p.genre))).sort()
   }
 
-  async getKinds() {
+  async getKinds(): Promise<string[]> {
     const products = await this.getAll()
     return Array.from(new Set(products.map(p => p.kind))).sort()
   }

@@ -1,8 +1,17 @@
 import { useState } from 'react'
 import './DownloadModal.css'
 
-function DownloadModal({ product, onClose, title, formats }) {
-  const [selectedFormat, setSelectedFormat] = useState(null)
+import { Product } from '../../../domain/Product'
+
+interface DownloadModalProps {
+  product: Product;
+  onClose: () => void;
+  title?: string;
+  formats?: any; // To allow flexibility for formats map or audioFormats map
+}
+
+function DownloadModal({ product, onClose, title, formats }: DownloadModalProps) {
+  const [selectedFormat, setSelectedFormat] = useState<any>(null)
   
   const formatsToDisplay = formats || (product && product.formats)
   if (!formatsToDisplay) return null
@@ -14,7 +23,7 @@ function DownloadModal({ product, onClose, title, formats }) {
   })
 
   // Handle click on a format
-  const handleFormatClick = (key, val, e) => {
+  const handleFormatClick = (key: string, val: any, e: React.MouseEvent) => {
     if (Array.isArray(val)) {
       e.preventDefault()
       setSelectedFormat({ key, files: val })
@@ -41,7 +50,7 @@ function DownloadModal({ product, onClose, title, formats }) {
                 availableFormats.map(([key, val]) => (
                   <a 
                     key={key} 
-                    href={Array.isArray(val) ? '#' : val} 
+                    href={Array.isArray(val) ? '#' : (val as string)} 
                     target={Array.isArray(val) ? undefined : "_blank"}
                     rel={Array.isArray(val) ? undefined : "noopener noreferrer"}
                     className="format-link"
@@ -63,7 +72,7 @@ function DownloadModal({ product, onClose, title, formats }) {
             </div>
             <p>Wybierz plik do pobrania:</p>
             <div className="files-list">
-              {selectedFormat.files.map((file, index) => (
+              {selectedFormat.files.map((file: any, index: number) => (
                 <a 
                   key={index} 
                   href={file.url} 

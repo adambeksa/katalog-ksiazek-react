@@ -1,6 +1,11 @@
 import './ProductAttribution.css'
+import { Product } from '../../../domain/Product'
 
-function ProductAttribution({ product }) {
+interface ProductAttributionProps {
+  product: Product;
+}
+
+function ProductAttribution({ product }: ProductAttributionProps) {
   return (
     <div className="product-attribution">
       <div className="attribution-header">

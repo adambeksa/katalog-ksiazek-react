@@ -1,18 +1,25 @@
 import { useState, useRef, useEffect } from 'react'
 import './FilterSelect.css'
 
-function FilterSelect({ label, value, options, onChange }) {
+interface FilterSelectProps {
+  label: string;
+  value: string;
+  options: string[];
+  onChange: (value: string) => void;
+}
+
+function FilterSelect({ label, value, options, onChange }: FilterSelectProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
-  const containerRef = useRef(null)
+  const containerRef = useRef<HTMLDivElement>(null)
 
   const filteredOptions = options.filter(option =>
     option.toLowerCase().includes(searchQuery.toLowerCase())
   )
 
   useEffect(() => {
-    function handleClickOutside(event) {
-      if (containerRef.current && !containerRef.current.contains(event.target)) {
+    function handleClickOutside(event: MouseEvent) {
+      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
         setIsOpen(false)
       }
     }
@@ -25,7 +32,7 @@ function FilterSelect({ label, value, options, onChange }) {
     if (!isOpen) setSearchQuery('')
   }
 
-  const handleSelect = (option) => {
+  const handleSelect = (option: string) => {
     onChange(option)
     setIsOpen(false)
   }

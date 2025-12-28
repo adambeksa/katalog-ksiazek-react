@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom'
 import './Layout.css'
 
-function Layout({ children }) {
+import { ReactNode } from 'react'
+function Layout({ children }: { children: ReactNode }) {
   return (
     <div className="layout">
       <header className="header">
@@ -28,5 +29,3 @@ function Layout({ children }) {
 }
 
 export default Layout
-
-

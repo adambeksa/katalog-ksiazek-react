@@ -13,7 +13,6 @@ function ProductCardPage() {
   const [showAudioModal, setShowAudioModal] = useState(false)
   const { data: product, isLoading, error } = useProductQuery(id)
 
-
   if (isLoading) {
     return (
       <div className="product-card-page">
@@ -29,7 +28,7 @@ function ProductCardPage() {
       <div className="product-card-page">
         <div className="container">
           <div className="product-not-found">
-            <h2>{error || 'Książka nie została znaleziona'}</h2>
+            <h2>{error ? (error as Error).message : 'Książka nie została znaleziona'}</h2>
             <Link to="/products" className="back-button">
               Powrót do listy książek
             </Link>
@@ -122,4 +121,3 @@ function ProductCardPage() {
 }
 
 export default ProductCardPage
-

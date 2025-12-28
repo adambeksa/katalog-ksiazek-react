@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react'
 import { productFacade } from '../../application/ProductFacade'
+import { Product } from '../../domain/Product'
+import { FilterOptions, ProductFilters } from '../../application/ProductFacade'
 
-export function useFilteredProducts(filters = {}) {
-  const [products, setProducts] = useState([])
-  const [filterOptions, setFilterOptions] = useState({
+export function useFilteredProducts(filters: ProductFilters = {}) {
+  const [products, setProducts] = useState<Product[]>([])
+  const [filterOptions, setFilterOptions] = useState<FilterOptions>({
     authors: [],
     epochs: [],
     genres: [],
@@ -12,7 +14,7 @@ export function useFilteredProducts(filters = {}) {
   const [page, setPage] = useState(1)
   const [totalPages, setTotalPages] = useState(1)
   const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
+  const [error, setError] = useState<string | null>(null)
 
   // Reset page when filters change
   useEffect(() => {
@@ -34,8 +36,8 @@ export function useFilteredProducts(filters = {}) {
         setFilterOptions(options)
         setProducts(items)
         setTotalPages(Math.ceil(total / 20))
-      } catch (err) {
-        setError(err.message)
+      } catch (err: any) {
+        setError(err.message || 'Wystąpił błąd')
       } finally {
         setLoading(false)
       }

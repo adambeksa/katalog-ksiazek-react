@@ -1,7 +1,16 @@
 import { Link } from 'react-router-dom'
 import './Breadcrumbs.css'
 
-function Breadcrumbs({ items }) {
+interface BreadcrumbItem {
+  label: string;
+  path?: string;
+}
+
+interface BreadcrumbsProps {
+  items: BreadcrumbItem[];
+}
+
+function Breadcrumbs({ items }: BreadcrumbsProps) {
   if (!items || items.length === 0) return null
 
   return (

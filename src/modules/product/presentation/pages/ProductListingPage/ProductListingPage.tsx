@@ -5,8 +5,10 @@ import Breadcrumbs from '../../../../shared/ui/components/Breadcrumbs/Breadcrumb
 import ProductFilters from '../../components/ProductFilters/ProductFilters'
 import './ProductListingPage.css'
 
+import { ProductFilters as IProductFilters } from '../../../application/ProductFacade'
+
 function ProductListingPage() {
-  const [filters, setFilters] = useState({
+  const [filters, setFilters] = useState<IProductFilters>({
     author: 'Wszystkie',
     epoch: 'Wszystkie',
     genre: 'Wszystkie',
@@ -14,7 +16,7 @@ function ProductListingPage() {
   })
   const { products, filterOptions, loading, error, page, setPage, totalPages } = useFilteredProducts(filters)
 
-  const handleFilterChange = (key, value) => {
+  const handleFilterChange = (key: keyof IProductFilters, value: string) => {
     setFilters(prev => ({
       ...prev,
       [key]: value
@@ -92,4 +94,3 @@ function ProductListingPage() {
 }
 
 export default ProductListingPage
-
