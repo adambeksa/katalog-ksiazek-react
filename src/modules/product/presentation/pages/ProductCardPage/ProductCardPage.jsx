@@ -18,7 +18,7 @@ function ProductCardPage() {
     return (
       <div className="product-card-page">
         <div className="container">
-          <div className="loading">Ładowanie produktu...</div>
+          <div className="loading">Ładowanie...</div>
         </div>
       </div>
     )
@@ -29,9 +29,9 @@ function ProductCardPage() {
       <div className="product-card-page">
         <div className="container">
           <div className="product-not-found">
-            <h2>{error || 'Produkt nie został znaleziony'}</h2>
-            <Link to="/produkty" className="back-button">
-              Powrót do listy produktów
+            <h2>{error || 'Książka nie została znaleziona'}</h2>
+            <Link to="/products" className="back-button">
+              Powrót do listy książek
             </Link>
           </div>
         </div>
@@ -70,20 +70,12 @@ function ProductCardPage() {
           <div className="product-info-section">
             <h2>{product.author}</h2>
             <h1>{product.name}</h1>
-            
-            <div className="stock-status">
-              {product.isAvailable() ? (
-                <span className="in-stock">✓ Dostępny</span>
-              ) : (
-                <span className="out-of-stock">✗ Niedostępny</span>
-              )}
-            </div>
 
             <div className="product-description-section">
-              <h3>Opis produktu</h3>
+              <h3>Opis lektury</h3>
               <div 
                 className="product-description-content"
-                dangerouslySetInnerHTML={{ __html: product.fullDescription }} 
+                dangerouslySetInnerHTML={{ __html: product.description }} 
               />
             </div>
 
@@ -92,10 +84,9 @@ function ProductCardPage() {
             <div className="product-actions">
               <button
                 onClick={handleDownload}
-                disabled={!product.isAvailable()}
                 className="read-button"
               >
-                {product.isAvailable() ? 'Przeczytaj książkę' : 'Produkt niedostępny'}
+                Przeczytaj książkę
               </button>
               
               {hasAudio && (

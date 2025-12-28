@@ -37,17 +37,14 @@ export class ProductDataService {
     const product = new Product({
       id: data.slug,
       name: data.title,
-      image: data.simple_thumb || data.cover,
-      description: `<strong>Autor:</strong> ${author}<br/><strong>Epoka:</strong> ${epoch}<br/><strong>Rodzaj:</strong> ${kind}<br/><strong>Gatunek:</strong> ${genre}`,
-      fullDescription: `<strong>Tytuł:</strong> ${data.title}<br/><strong>Autor:</strong> ${author}<br/><strong>Epoka:</strong> ${epoch}<br/><strong>Rodzaj:</strong> ${kind}<br/><strong>Gatunek:</strong> ${genre}<br/><br/>${data.fragment_data ? data.fragment_data.html : ''}`,
+      image: data.simple_thumb,
+      description: `<strong>Tytuł:</strong> ${data.title}<br/><strong>Autor:</strong> ${author}<br/><strong>Epoka:</strong> ${epoch}<br/><strong>Rodzaj:</strong> ${kind}<br/><strong>Gatunek:</strong> ${genre}<br/><br/>${data.fragment_data ? data.fragment_data.html : ''}`,
       author: author,
       epoch: epoch,
       genre: genre,
       kind: kind,
-      inStock: true,
       url: data.url || '',
       license: data.license || 'Domena publiczna',  //TODO: connect real license
-      licenseDescription: data.license_description || '',  //TODO: connect real license
       audioDirector: audioDirector,
       audioArtist: audioArtist,
     })

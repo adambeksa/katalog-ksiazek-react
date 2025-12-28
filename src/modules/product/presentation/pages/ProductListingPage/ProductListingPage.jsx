@@ -25,7 +25,7 @@ function ProductListingPage() {
     return (
       <div className="product-listing">
         <div className="container">
-          <div className="loading">Ładowanie produktów...</div>
+          <div className="loading">Ładowanie...</div>
         </div>
       </div>
     )
@@ -63,7 +63,7 @@ function ProductListingPage() {
 
         {products.length === 0 ? (
           <div className="no-products">
-            <p>Brak produktów w wybranej kategorii.</p>
+            <p>Brak książek w wybranej kategorii.</p>
           </div>
         ) : (
           <div className="pagination">

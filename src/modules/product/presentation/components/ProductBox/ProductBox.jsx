@@ -11,7 +11,7 @@ function ProductBox({ product }) {
   }
 
   return (
-    <div className="product-box-listing">
+    <div className="product-box">
       <img className="product-image" src={product.image} alt={product.name} />
       <div className="product-info">
         <h3>{product.name}</h3>

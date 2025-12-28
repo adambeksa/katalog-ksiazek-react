@@ -2,27 +2,37 @@
   min-height: 100%;
 }
 
-.hero {
+.banner {
   text-align: center;
-  padding: 4rem 0;
+  padding: 4rem 1rem;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   border-radius: 10px;
   margin-bottom: 3rem;
 }
 
-.hero h1 {
+.banner h1 {
   font-size: 3rem;
   margin-bottom: 1rem;
 }
 
-.hero p {
+.banner p {
   font-size: 1.25rem;
   margin-bottom: 2rem;
   opacity: 0.9;
 }
 
-.cta-button {
+.banner a {
+  color: white;
+  text-decoration: underline;
+  transition: all 0.3s;
+}
+
+.banner a:hover {
+  font-weight: bold;
+}
+
+.banner .cta-button {
   display: inline-block;
   padding: 1rem 2rem;
   background-color: white;
@@ -33,96 +43,7 @@
   transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.cta-button:hover {
+.banner .cta-button:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
-
-.features {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-  margin-bottom: 4rem;
-}
-
-.feature-card {
-  background: white;
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.feature-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-}
-
-.feature-card h3 {
-  margin-top: 0;
-  font-size: 1.5rem;
-}
-
-
-
-.popular-products h2 {
-  text-align: center;
-  font-size: 2rem;
-  margin-bottom: 2rem;
-}
-
-.products-preview {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-}
-
-.product-preview {
-  background: white;
-  border-radius: 10px;
-  padding: 1.5rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.product-preview:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-}
-
-.product-image-placeholder {
-  font-size: 4rem;
-  margin-bottom: 1rem;
-  max-width: 100%;
-}
-
-.product-preview h4 {
-  margin-bottom: 0.5rem;
-  font-size: 1.25rem;
-}
-
-
-
-.view-button {
-  display: inline-block;
-  padding: 0.75rem 1.5rem;
-  background-color: #667eea;
-  color: white;
-  text-decoration: none;
-  border-radius: 5px;
-  transition: background-color 0.3s;
-}
-
-.view-button:hover {
-  background-color: #5568d3;
-}
-
-.loading {
-  text-align: center;
-  padding: 2rem;
-  font-size: 1.25rem;
-  color: #667eea;
-}
-
