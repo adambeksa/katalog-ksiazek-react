@@ -74,7 +74,7 @@ function ProductCardPage() {
               <h3>Opis lektury</h3>
               <div 
                 className="product-description-content"
-                dangerouslySetInnerHTML={{ __html: product.description }} 
+                dangerouslySetInnerHTML={{ __html: product.description }}
               />
             </div>
 

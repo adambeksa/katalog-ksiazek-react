@@ -21,19 +21,22 @@ Każdy moduł (np. `product`) jest podzielony na warstwy:
 1.  **Presentation (`presentation/`)**
     *   Widoki (Pages), Komponenty, Hooki.
     *   Odpowiada za to, co widzi użytkownik.
-    *   Korzysta z warstwy Application.
+    *   Korzysta z warstwy Application (Fasady).
 
 2.  **Application (`application/`)**
-    *   Serwisy aplikacyjne (np. `ProductFacade`).
+    *   Serwisy aplikacyjne / Fasady (np. `ProductFacade`, `ProductFilterFacade`).
+    *   `ProductFacade`: Odpowiada za pobieranie danych.
+    *   `ProductFilterFacade`: Odpowiada za operacje filtrowania.
     *   Orkiestruje przepływ danych między domeną a infrastrukturą.
-    *   Nie zależy od UI ani bazy danych.
 
 3.  **Domain (`domain/`)**
-    *   Czysta logika biznesowa (np. encja `Product`).
-    *   Niezależna od frameworków i bibliotek.
+    *   Czysta logika biznesowa i modele (np. `Product`).
+    *   Serwisy domenowe (np. `ProductFilterService` - logika filtrowania).
+    *   Interfejsy domenowe (np. `ProductFilters`, `FilterOptions`).
 
 4.  **Infrastructure (`infrastructure/`)**
     *   Implementacja dostępu do danych (np. `ProductDataService`).
+    *   Adaptery (`ProductListAdapter`, `ProductDetailAdapter`) - mapowanie DTO na encje.
     *   Komunikacja z API (Axios).
     *   Mockowanie danych.
 

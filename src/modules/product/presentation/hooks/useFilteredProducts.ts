@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
-import { productFacade } from '../../application/ProductFacade'
+import { productFilterFacade } from '../../application/ProductFilterFacade'
 import { Product } from '../../domain/Product'
-import { FilterOptions, ProductFilters } from '../../application/ProductFacade'
+import { FilterOptions, ProductFilters } from '../../application/ProductFilterFacade'
 
 export function useFilteredProducts(filters: ProductFilters = {}) {
   const [products, setProducts] = useState<Product[]>([])
@@ -28,9 +28,9 @@ export function useFilteredProducts(filters: ProductFilters = {}) {
         setError(null)
 
         // Pobierz opcje filtrów i produkty równolegle
-        const [options, { items, total }] = await Promise.all([
-          productFacade.getFilterOptions(),
-          productFacade.filterProducts({ filters, page })
+          const [options, { items, total }] = await Promise.all([
+          productFilterFacade.getFilterOptions(),
+          productFilterFacade.filterProducts({ filters, page })
         ])
 
         setFilterOptions(options)

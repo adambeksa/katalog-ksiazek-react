@@ -1,7 +1,7 @@
 import FilterSelect from './FilterSelect'
 import './ProductFilters.css'
 
-import { ProductFilters as IProductFilters, FilterOptions } from '../../../application/ProductFacade'
+import { ProductFilters as IProductFilters, FilterOptions } from '../../../application/ProductFilterFacade'
 
 interface ProductFiltersProps {
   filters: IProductFilters;
