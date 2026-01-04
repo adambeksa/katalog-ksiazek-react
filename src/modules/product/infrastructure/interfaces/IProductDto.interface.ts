@@ -1,13 +1,13 @@
-export interface ApiTermDto {
+export interface IApiTermDto {
   url: string;
   href: string;
   name: string;
   slug: string;
 }
 
-export interface ApiAuthorDto extends ApiTermDto {}
+export interface IApiAuthorDto extends IApiTermDto {}
 
-export interface ApiMediaDto {
+export interface IApiMediaDto {
   url: string;
   director?: string;
   artist?: string;
@@ -15,15 +15,15 @@ export interface ApiMediaDto {
   type: string;
 }
 
-export interface ProductDto {
+export interface IProductDto {
   title: string;
   slug: string;
   url: string;
   language: string;
-  epochs: ApiTermDto[];
-  genres: ApiTermDto[];
-  kinds: ApiTermDto[];
-  authors: ApiAuthorDto[];
+  epochs: IApiTermDto[];
+  genres: IApiTermDto[];
+  kinds: IApiTermDto[];
+  authors: IApiAuthorDto[];
   translators: { name: string }[];
   fragment_data?: {
     title?: string;
@@ -42,7 +42,7 @@ export interface ProductDto {
   fb2?: string;
   xml?: string;
   
-  media: ApiMediaDto[];
+  media: IApiMediaDto[];
   
   audio_length: string;
   

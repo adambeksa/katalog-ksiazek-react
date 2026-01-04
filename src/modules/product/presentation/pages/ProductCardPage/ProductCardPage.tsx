@@ -1,10 +1,13 @@
-import { useParams, Link, useNavigate } from 'react-router-dom'
-import './ProductCardPage.css'
-import { useProductQuery } from '../../hooks/useProductQuery'
-import Breadcrumbs from '../../../../shared/ui/components/Breadcrumbs/Breadcrumbs'
 import { useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
+import { ROUTES } from '../../../../../routes'
+import Breadcrumbs from '../../../../shared/ui/components/Breadcrumbs/Breadcrumbs'
+import { useProductQuery } from '../../../hooks/useProductQuery'
 import DownloadModal from '../../components/DownloadModal/DownloadModal'
 import ProductAttribution from '../../components/ProductAttribution/ProductAttribution'
+import ProductCardError from './ProductCardError'
+import ProductCardSkeleton from './ProductCardSkeleton'
+import './ProductCardPage.css'
 
 function ProductCardPage() {
   const { id } = useParams()
@@ -14,28 +17,11 @@ function ProductCardPage() {
   const { data: product, isLoading, error } = useProductQuery(id)
 
   if (isLoading) {
-    return (
-      <div className="product-card-page">
-        <div className="container">
-          <div className="loading">Ładowanie...</div>
-        </div>
-      </div>
-    )
+    return <ProductCardSkeleton />
   }
 
   if (error || !product) {
-    return (
-      <div className="product-card-page">
-        <div className="container">
-          <div className="product-not-found">
-            <h2>{error ? (error as Error).message : 'Książka nie została znaleziona'}</h2>
-            <Link to="/products" className="back-button">
-              Powrót do listy książek
-            </Link>
-          </div>
-        </div>
-      </div>
-    )
+    return <ProductCardError message={(error as Error)?.message} />
   }
 
   const handleDownload = () => {
@@ -46,15 +32,12 @@ function ProductCardPage() {
     setShowAudioModal(true)
   }
 
-  // Check if product has any audio formats
-  const hasAudio = product && product.audioFormats && Object.keys(product.audioFormats).length > 0
-
   return (
     <div className="product-card-page">
       <div className="container">
         <Breadcrumbs items={[
-          { label: 'Strona Główna', path: '/' },
-          { label: 'Katalog książek', path: '/products' },
+          { label: 'Strona Główna', path: ROUTES.HOME },
+          { label: 'Katalog książek', path: ROUTES.PRODUCTS },
           { label: product.name }
         ]} />
         <button onClick={() => navigate(-1)} className="back-link">
@@ -88,7 +71,7 @@ function ProductCardPage() {
                 Przeczytaj książkę
               </button>
               
-              {hasAudio && (
+              {product.hasAudio && (
                 <button
                   onClick={handleAudioDownload}
                   className="audio-button"

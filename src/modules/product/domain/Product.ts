@@ -1,5 +1,4 @@
-import { IProduct, AudioFormat } from './interfaces/IProduct'
-export type { AudioFormat }
+import { IProduct, IAudioFormat } from './interfaces/IProduct.interface'
 
 /**
  * Encja produktu - reprezentuje domenę produktu w systemie
@@ -19,7 +18,7 @@ export interface ProductConstructorParams {
   audioDirector?: string;
   audioArtist?: string;
   formats?: Record<string, string>;
-  audioFormats?: Record<string, AudioFormat[]>;
+  audioFormats?: Record<string, IAudioFormat[]>;
 }
 
 export class Product implements IProduct {
@@ -37,7 +36,7 @@ export class Product implements IProduct {
   audioDirector: string;
   audioArtist: string;
   formats: Record<string, string>;
-  audioFormats: Record<string, AudioFormat[]>;
+  audioFormats: Record<string, IAudioFormat[]>;
 
   constructor({
     id,
@@ -71,5 +70,9 @@ export class Product implements IProduct {
     this.audioArtist = audioArtist
     this.formats = formats
     this.audioFormats = audioFormats
+  }
+
+  get hasAudio(): boolean {
+    return this.audioFormats && Object.keys(this.audioFormats).length > 0
   }
 }

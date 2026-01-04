@@ -1,9 +1,10 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Layout from './modules/shared/ui/layout/Layout'
+import Layout from './modules/shell/layout/Layout'
 import HomePage from './modules/product/presentation/pages/HomePage/HomePage'
 import ProductListingPage from './modules/product/presentation/pages/ProductListingPage/ProductListingPage'
 import ProductCardPage from './modules/product/presentation/pages/ProductCardPage/ProductCardPage'
-import { ProductProvider } from './modules/product/presentation/context/ProductContext'
+import { ProductProvider } from './modules/product/application/context/ProductContext'
+import { ROUTES } from './routes'
 
 function App() {
   return (
@@ -11,9 +12,9 @@ function App() {
       <Router>
         <Layout>
           <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/products" element={<ProductListingPage />} />
-            <Route path="/produkt/:id" element={<ProductCardPage />} />
+            <Route path={ROUTES.HOME} element={<HomePage />} />
+            <Route path={ROUTES.PRODUCTS} element={<ProductListingPage />} />
+            <Route path={ROUTES.PRODUCT_DETAILS(':id')} element={<ProductCardPage />} />
           </Routes>
         </Layout>
       </Router>

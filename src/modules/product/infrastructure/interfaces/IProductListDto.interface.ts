@@ -1,4 +1,4 @@
-export interface ProductListDto {
+export interface IProductListDto {
   kind: string;
   full_sort_key: string;
   title: string;

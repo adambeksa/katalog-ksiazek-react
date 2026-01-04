@@ -1,7 +1,7 @@
 import { Product } from '../../domain/Product';
-import { ProductListDto } from '../api/interfaces/ProductListDto';
+import { IProductListDto } from '../interfaces/IProductListDto.interface';
 
-export const mapListToProduct = (data: ProductListDto): Product => {
+export const mapListToProduct = (data: IProductListDto): Product => {
   const product = new Product({
     id: data.slug,
     name: data.title,

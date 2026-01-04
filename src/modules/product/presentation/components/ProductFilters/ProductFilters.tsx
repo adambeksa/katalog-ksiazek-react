@@ -1,11 +1,11 @@
 import FilterSelect from './FilterSelect'
 import './ProductFilters.css'
-import { IProductFilters } from '../../../domain/interfaces/ProductFilters'
-import { FilterOptions } from '../../../domain/interfaces/FilterOptions'
+import { IProductFilters } from '../../../domain/interfaces/IProductFilters.interface'
+import { IFilterOptions } from '../../../domain/interfaces/IFilterOptions.interface'
 
 interface ProductFiltersProps {
   filters: IProductFilters;
-  filterOptions: FilterOptions;
+  filterOptions: IFilterOptions;
   onFilterChange: (key: keyof IProductFilters, value: string) => void;
 }
 

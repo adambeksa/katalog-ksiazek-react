@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import './Layout.css'
+import { ROUTES } from '../../../routes'
 
 import { ReactNode } from 'react'
 function Layout({ children }: { children: ReactNode }) {
@@ -7,12 +8,12 @@ function Layout({ children }: { children: ReactNode }) {
     <div className="layout">
       <header className="header">
         <div className="container">
-          <Link to="/" className="logo">
+          <Link to={ROUTES.HOME} className="logo">
             <h1>Biblioteka ABE</h1>
           </Link>
           <nav className="nav">
-            <Link to="/">Strona Główna</Link>
-            <Link to="/products">Katalog książek</Link>
+            <Link to={ROUTES.HOME}>Strona Główna</Link>
+            <Link to={ROUTES.PRODUCTS}>Katalog książek</Link>
           </nav>
         </div>
       </header>

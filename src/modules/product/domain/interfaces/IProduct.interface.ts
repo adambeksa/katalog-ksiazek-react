@@ -1,4 +1,4 @@
-export interface AudioFormat {
+export interface IAudioFormat {
   name: string;
   url: string;
 }
@@ -18,5 +18,5 @@ export interface IProduct {
   audioDirector: string;
   audioArtist: string;
   formats: Record<string, string>;
-  audioFormats: Record<string, AudioFormat[]>;
+  audioFormats: Record<string, IAudioFormat[]>;
 }

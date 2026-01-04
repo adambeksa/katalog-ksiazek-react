@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import { productFacade } from '../../application/ProductFacade'
+import { productFacade } from '../application/ProductFacade'
 
 export function useProductQuery(id?: string) {
 

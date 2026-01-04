@@ -1,7 +1,7 @@
 import axios, { AxiosInstance } from 'axios'
 import { Product } from '../../domain/Product'
-import { ProductDto } from '../../infrastructure/api/interfaces/ProductDto'
-import { ProductListDto } from '../../infrastructure/api/interfaces/ProductListDto'
+import { IProductDto } from '../interfaces/IProductDto.interface'
+import { IProductListDto } from '../interfaces/IProductListDto.interface'
 import { mapListToProduct } from '../adapters/ProductListAdapter'
 import { mapDetailToProduct } from '../adapters/ProductDetailAdapter'
 
@@ -16,7 +16,7 @@ export class ProductDataService {
 
   async getAll(): Promise<Product[]> {
     try {
-      const res = await this.client.get<ProductListDto[]>('/books')
+      const res = await this.client.get<IProductListDto[]>('/books')
       return res.data.map(item => mapListToProduct(item));
     } catch (error) {
       console.error('Error fetching products:', error)
@@ -26,7 +26,7 @@ export class ProductDataService {
 
   async getById(id: string): Promise<Product | null> {
     try {
-      const res = await this.client.get<ProductDto>(`/books/${id}`)
+      const res = await this.client.get<IProductDto>(`/books/${id}`)
       return mapDetailToProduct(res.data)
     } catch (error) {
       console.error(`Error fetching product ${id}:`, error)

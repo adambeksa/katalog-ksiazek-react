@@ -1,9 +1,9 @@
 import { createContext, useContext, ReactNode } from 'react'
 import { Product } from '../../domain/Product'
-import { useProductsQuery } from '../hooks/useProductsQuery'
+import { useProductsCollectionQuery } from '../../hooks/useProductsCollectionQuery'
 
 interface ProductContextType {
-  products: Product[]
+  productsCollection: Product[]
   loading: boolean
   error: any
 }
@@ -11,10 +11,10 @@ interface ProductContextType {
 const ProductContext = createContext<ProductContextType | undefined>(undefined)
 
 export function ProductProvider({ children }: { children: ReactNode }) {
-  const { data: products = [], isLoading: loading, error } = useProductsQuery()
+  const { data: productsCollection = [], isLoading: loading, error } = useProductsCollectionQuery()
 
   return (
-    <ProductContext.Provider value={{ products, loading, error }}>
+    <ProductContext.Provider value={{ productsCollection, loading, error }}>
       {children}
     </ProductContext.Provider>
   )

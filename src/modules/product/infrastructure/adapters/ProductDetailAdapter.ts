@@ -1,10 +1,10 @@
 import { Product } from '../../domain/Product';
-import { ProductDto } from '../api/interfaces/ProductDto';
-import { extractAudioData, extractFormats } from '../utils/productAdapterUtils';
+import { IProductDto } from '../interfaces/IProductDto.interface';
+import { extractAudioData, extractEbookFormats } from '../utils/productAdapterUtils';
 
-export const mapDetailToProduct = (data: ProductDto): Product => {
+export const mapDetailToProduct = (data: IProductDto): Product => {
   const { features, audioFormats, audioDirector, audioArtist } = extractAudioData(data.media || [])
-  const formats = extractFormats(data)
+  const formats = extractEbookFormats(data)
 
   const product = new Product({
     id: data.slug,

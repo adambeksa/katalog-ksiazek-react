@@ -1,11 +1,8 @@
 import { Link } from 'react-router-dom'
 import './ProductBox.css'
-
-/**
- * Komponent prezentacyjny boxu produktu w liście
- * Używany w liście produktów
- */
 import { Product } from '../../../domain/Product'
+import { ROUTES } from '../../../../../routes'
+import { memo } from 'react'
 
 interface ProductBoxProps {
   product: Product;
@@ -29,7 +26,7 @@ function ProductBox({ product }: ProductBoxProps) {
           className="product-description"
           dangerouslySetInnerHTML={{ __html: product.description }}
         />
-        <Link to={`/produkt/${product.id}`} className="product-link">
+        <Link to={ROUTES.PRODUCT_DETAILS(product.id)} className="product-link">
           Zobacz szczegóły
         </Link>
       </div>
@@ -37,4 +34,4 @@ function ProductBox({ product }: ProductBoxProps) {
   )
 }
 
-export default ProductBox
+export default memo(ProductBox)

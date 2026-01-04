@@ -1,10 +1,12 @@
 import { useState } from 'react'
-import { useFilteredProducts } from '../../hooks/useFilteredProducts'
+import { useFilteredProducts } from '../../../hooks/useFilteredProducts'
 import ProductBox from '../../components/ProductBox/ProductBox'
 import Breadcrumbs from '../../../../shared/ui/components/Breadcrumbs/Breadcrumbs'
 import ProductFilters from '../../components/ProductFilters/ProductFilters'
 import './ProductListingPage.css'
-import { IProductFilters } from '../../../domain/interfaces/ProductFilters'
+import { IProductFilters } from '../../../domain/interfaces/IProductFilters.interface'
+import ProductListingSkeleton from './ProductListingSkeleton'
+import ProductListingError from './ProductListingError'
 
 function ProductListingPage() {
   const [filters, setFilters] = useState<IProductFilters>({
@@ -24,22 +26,16 @@ function ProductListingPage() {
 
   if (loading) {
     return (
-      <div className="product-listing">
-        <div className="container">
-          <div className="loading">Ładowanie...</div>
-        </div>
-      </div>
+      <ProductListingSkeleton 
+        filters={filters}
+        filterOptions={filterOptions}
+        onFilterChange={handleFilterChange}
+      />
     )
   }
 
   if (error) {
-    return (
-      <div className="product-listing">
-        <div className="container">
-          <div className="error">Błąd: {error}</div>
-        </div>
-      </div>
-    )
+    return <ProductListingError message={error} />
   }
 
   return (

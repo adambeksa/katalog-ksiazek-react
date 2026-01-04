@@ -1,4 +1,4 @@
-import { productFacade } from '../../application/ProductFacade'
+import { productFacade } from '../application/ProductFacade'
 
 /**
  * Hook do zarządzania produktami
@@ -10,9 +10,9 @@ import { useQuery } from '@tanstack/react-query'
  * Hook do zarządzania produktami
  * Łączy warstwę prezentacji z warstwą aplikacji
  */
-export function useProductsQuery() {
+export function useProductsCollectionQuery() {
   const query = useQuery({
-    queryKey: ['products'],
+    queryKey: ['productsCollection'],
     queryFn: () => productFacade.getAllProducts(),
     staleTime: Infinity,
   })

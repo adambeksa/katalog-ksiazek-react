@@ -1,4 +1,4 @@
-export interface FilterOptions {
+export interface IFilterOptions {
   authors: string[];
   epochs: string[];
   genres: string[];

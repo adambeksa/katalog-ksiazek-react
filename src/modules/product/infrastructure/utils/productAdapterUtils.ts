@@ -1,21 +1,21 @@
-import { AudioFormat } from '../../domain/Product';
-import { ApiMediaDto, ProductDto } from '../api/interfaces/ProductDto';
+import { IAudioFormat } from '../../domain/interfaces/IProduct.interface';
+import { IApiMediaDto, IProductDto } from '../interfaces/IProductDto.interface';
 
 interface AudioData {
   features: string[];
-  audioFormats: Record<string, AudioFormat[]>;
+  audioFormats: Record<string, IAudioFormat[]>;
   audioDirector: string;
   audioArtist: string;
 }
 
-export const extractAudioData = (media: ApiMediaDto[]): AudioData => {
+export const extractAudioData = (media: IApiMediaDto[]): AudioData => {
   const features: string[] = []
-  const audioFormats: Record<string, AudioFormat[]> = {}
+  const audioFormats: Record<string, IAudioFormat[]> = {}
   let audioDirector = ''
   let audioArtist = ''
 
   if (media && media.length > 0) {
-    media.forEach((m: ApiMediaDto) => {
+    media.forEach((m: IApiMediaDto) => {
       const type = m.type
       if (!audioFormats[type]) {
         audioFormats[type] = []
@@ -46,7 +46,7 @@ export const extractAudioData = (media: ApiMediaDto[]): AudioData => {
   }
 }
 
-export const extractFormats = (data: ProductDto): Record<string, string> => {
+export const extractEbookFormats = (data: IProductDto): Record<string, string> => {
   const formats: Record<string, string> = {}
 
   if (data.pdf) formats['pdf'] = data.pdf
