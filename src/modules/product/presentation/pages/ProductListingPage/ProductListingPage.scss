@@ -9,15 +9,12 @@
   color: #2c3e50;
 }
 
-
-
 .products-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 2rem;
   margin-bottom: 2rem;
 }
-
 
 .no-products {
   text-align: center;
@@ -29,21 +26,15 @@
   font-size: 1.25rem;
 }
 
-.loading,
 .error {
   text-align: center;
   padding: 3rem;
   font-size: 1.25rem;
 }
 
-.loading {
-  color: #667eea;
-}
-
 .error {
   color: #e74c3c;
 }
-
 
 .pagination {
   display: flex;

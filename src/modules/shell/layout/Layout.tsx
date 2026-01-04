@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import './Layout.css'
+import './Layout.scss'
 import { ROUTES } from '../../../routes'
 
 import { ReactNode } from 'react'

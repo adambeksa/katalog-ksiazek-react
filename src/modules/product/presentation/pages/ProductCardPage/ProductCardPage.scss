@@ -44,15 +44,7 @@
   margin-bottom: 1rem;
 }
 
-.product-badge {
-  display: inline-block;
-  padding: 0.5rem 1rem;
-  background-color: #667eea;
-  color: white;
-  border-radius: 5px;
-  font-size: 0.9rem;
-  font-weight: 600;
-}
+
 
 .product-info-section h1 {
   font-size: 2rem;
@@ -62,24 +54,6 @@
 .product-info-section h2 {
   font-size: 1rem;
   color: #2c3e50;
-}
-
-
-
-.stock-status {
-  margin-bottom: 1rem;
-}
-
-.in-stock {
-  color: #27ae60;
-  font-weight: 600;
-  font-size: 1.1rem;
-}
-
-.out-of-stock {
-  color: #e74c3c;
-  font-weight: 600;
-  font-size: 1.1rem;
 }
 
 .product-description-section {
@@ -96,49 +70,9 @@
   line-height: 1.6;
 }
 
-.product-features {
-  margin-bottom: 2rem;
-}
-
-.product-features h3 {
-  color: #2c3e50;
-  margin-bottom: 1rem;
-}
-
-.product-features ul {
-  list-style: none;
-  padding: 0;
-}
-
-.product-features li {
-  padding: 0.5rem 0;
-  color: #666;
-  position: relative;
-  padding-left: 1.5rem;
-}
-
-.product-features li:before {
-  content: "✓";
-  position: absolute;
-  left: 0;
-  color: #27ae60;
-  font-weight: bold;
-}
-
 .product-actions {
   padding-top: 2rem;
   border-top: 1px solid #e0e0e0;
-}
-
-.quantity-selector {
-  margin-bottom: 1.5rem;
-}
-
-.quantity-selector label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: 600;
-  color: #2c3e50;
 }
 
 .read-button {
@@ -203,13 +137,6 @@
 
 .back-button:hover {
   background-color: #5568d3;
-}
-
-.loading {
-  text-align: center;
-  padding: 3rem;
-  font-size: 1.25rem;
-  color: #667eea;
 }
 
 @media (max-width: 768px) {

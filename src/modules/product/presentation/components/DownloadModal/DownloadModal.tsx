@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import './DownloadModal.css'
+import './DownloadModal.scss'
 
 import { Product } from '../../../domain/Product'
 

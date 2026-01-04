@@ -7,7 +7,7 @@ import DownloadModal from '../../components/DownloadModal/DownloadModal'
 import ProductAttribution from '../../components/ProductAttribution/ProductAttribution'
 import ProductCardError from './ProductCardError'
 import ProductCardSkeleton from './ProductCardSkeleton'
-import './ProductCardPage.css'
+import './ProductCardPage.scss'
 
 function ProductCardPage() {
   const { id } = useParams()

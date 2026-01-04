@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { ROUTES } from '../../../../../routes'
-import './ProductCardPage.css'
+import './ProductCardPage.scss'
 
 interface ProductCardErrorProps {
   message?: string;

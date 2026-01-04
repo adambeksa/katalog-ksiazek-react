@@ -1,5 +1,5 @@
 import FilterSelect from './FilterSelect'
-import './ProductFilters.css'
+import './ProductFilters.scss'
 import { IProductFilters } from '../../../domain/interfaces/IProductFilters.interface'
 import { IFilterOptions } from '../../../domain/interfaces/IFilterOptions.interface'
 

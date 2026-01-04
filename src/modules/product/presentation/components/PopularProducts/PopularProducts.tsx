@@ -1,5 +1,5 @@
 import ProductBox from '../ProductBox/ProductBox'
-import './PopularProducts.css'
+import './PopularProducts.scss'
 import { useProductContext } from '../../../application/context/ProductContext'
 import ProductBoxSkeleton from '../ProductBox/ProductBoxSkeleton'
 

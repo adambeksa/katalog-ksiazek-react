@@ -1,4 +1,4 @@
-import './ProductAttribution.css'
+import './ProductAttribution.scss'
 import { Product } from '../../../domain/Product'
 
 interface ProductAttributionProps {

@@ -1,7 +1,7 @@
 import { ROUTES } from '../../../../../routes'
 import Breadcrumbs from '../../../../shared/ui/components/Breadcrumbs/Breadcrumbs'
 import Skeleton from '../../../../shared/ui/components/Skeleton/Skeleton'
-import './ProductCardPage.css'
+import './ProductCardPage.scss'
 
 function ProductCardSkeleton() {
   return (
@@ -37,7 +37,6 @@ function ProductCardSkeleton() {
 
             <div className="product-actions mt-4">
               <Skeleton height="48px" width="180px" borderRadius="24px" className="mr-2" />
-              <Skeleton height="48px" width="200px" borderRadius="24px" />
             </div>
           </div>
         </div>

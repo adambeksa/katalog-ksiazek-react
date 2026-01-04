@@ -1,5 +1,5 @@
 import Skeleton from '../../../../shared/ui/components/Skeleton/Skeleton'
-import './ProductBoxSkeleton.css'
+import './ProductBoxSkeleton.scss'
 
 function ProductBoxSkeleton() {
   return (

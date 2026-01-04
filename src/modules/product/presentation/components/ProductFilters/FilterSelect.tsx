@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
-import './FilterSelect.css'
+import './FilterSelect.scss'
 
 interface FilterSelectProps {
   label: string;

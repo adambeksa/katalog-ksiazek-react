@@ -1,4 +1,4 @@
-import './HomePage.css'
+import './HomePage.scss'
 import PopularProducts from '../../components/PopularProducts/PopularProducts'
 import MainBanner from '../../../../banner/presentation/components/MainBanner/MainBanner'
 

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import './ProductBox.css'
+import './ProductBox.scss'
 import { Product } from '../../../domain/Product'
 import { ROUTES } from '../../../../../routes'
 import { memo } from 'react'

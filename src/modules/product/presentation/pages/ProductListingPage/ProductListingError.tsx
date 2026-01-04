@@ -1,4 +1,4 @@
-import './ProductListingPage.css'
+import './ProductListingPage.scss'
 
 interface ProductListingErrorProps {
   message?: string;

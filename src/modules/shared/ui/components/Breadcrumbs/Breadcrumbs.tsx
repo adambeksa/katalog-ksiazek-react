@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import './Breadcrumbs.css'
+import './Breadcrumbs.scss'
 
 interface BreadcrumbItem {
   label: string;

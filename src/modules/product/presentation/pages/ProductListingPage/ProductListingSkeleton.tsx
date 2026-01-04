@@ -1,7 +1,7 @@
 import Breadcrumbs from '../../../../shared/ui/components/Breadcrumbs/Breadcrumbs'
 import ProductFilters from '../../components/ProductFilters/ProductFilters'
 import ProductBoxSkeleton from '../../components/ProductBox/ProductBoxSkeleton'
-import './ProductListingPage.css'
+import './ProductListingPage.scss'
 import { IProductFilters } from '../../../domain/interfaces/IProductFilters.interface'
 import { IFilterOptions } from '../../../domain/interfaces/IFilterOptions.interface'
 
