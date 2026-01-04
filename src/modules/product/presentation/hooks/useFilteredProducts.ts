@@ -1,9 +1,13 @@
 import { useState, useEffect } from 'react'
 import { productFilterFacade } from '../../application/ProductFilterFacade'
 import { Product } from '../../domain/Product'
-import { FilterOptions, ProductFilters } from '../../application/ProductFilterFacade'
+import { IProductFilters } from '../../domain/interfaces/ProductFilters'
+import { FilterOptions } from '../../domain/interfaces/FilterOptions'
+import { useProductContext } from '../context/ProductContext'
 
-export function useFilteredProducts(filters: ProductFilters = {}) {
+export function useFilteredProducts(filters: IProductFilters = {}) {
+  const { products: allProducts, loading, error } = useProductContext()
+  
   const [products, setProducts] = useState<Product[]>([])
   const [filterOptions, setFilterOptions] = useState<FilterOptions>({
     authors: [],
@@ -13,8 +17,6 @@ export function useFilteredProducts(filters: ProductFilters = {}) {
   })
   const [page, setPage] = useState(1)
   const [totalPages, setTotalPages] = useState(1)
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
 
   // Reset page when filters change
   useEffect(() => {
@@ -22,30 +24,19 @@ export function useFilteredProducts(filters: ProductFilters = {}) {
   }, [JSON.stringify(filters)])
 
   useEffect(() => {
-    const loadData = async () => {
-      try {
-        setLoading(true)
-        setError(null)
+    if (loading || error) return
 
-        // Pobierz opcje filtrów i produkty równolegle
-          const [options, { items, total }] = await Promise.all([
-          productFilterFacade.getFilterOptions(),
-          productFilterFacade.filterProducts({ filters, page })
-        ])
+    // Generuj opcje filtrów na podstawie wszystkich produktów
+    const options = productFilterFacade.deriveFilterOptions(allProducts)
+    setFilterOptions(options)
 
-        setFilterOptions(options)
-        setProducts(items)
-        setTotalPages(Math.ceil(total / 20))
-      } catch (err: any) {
-        setError(err.message || 'Wystąpił błąd')
-      } finally {
-        setLoading(false)
-      }
-    }
+    // Filtruj i paginuj produkty
+    const { items, total } = productFilterFacade.filterProducts(allProducts, { filters, page })
+    
+    setProducts(items)
+    setTotalPages(Math.ceil(total / 20))
 
-    loadData()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [JSON.stringify(filters), page])
+  }, [allProducts, JSON.stringify(filters), page, loading, error])
 
   return { products, filterOptions, loading, error, page, setPage, totalPages }
 }

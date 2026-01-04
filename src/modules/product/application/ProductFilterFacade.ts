@@ -2,6 +2,7 @@ import { ProductDataService } from '../infrastructure/data-services/ProductDataS
 import { ProductFilterService } from '../domain/services/ProductFilterService';
 import { ProductFilters } from '../domain/interfaces/ProductFilters';
 import { FilterOptions } from '../domain/interfaces/FilterOptions';
+import { Product } from '../domain/Product';
 
 export class ProductFilterFacade {
   private productDataService: ProductDataService;
@@ -12,18 +13,15 @@ export class ProductFilterFacade {
     this.productFilterService = new ProductFilterService()
   }
 
-  async filterProducts({ filters = {}, page = 1, limit = 20 }: { filters?: ProductFilters, page?: number, limit?: number }) {
-    const products = await this.productDataService.getAll()
+  filterProducts(products: Product[], { filters = {}, page = 1, limit = 20 }: { filters?: ProductFilters, page?: number, limit?: number }) {
     return this.productFilterService.filterAndPaginate(products, { filters, page, limit })
   }
 
-  async getFilterOptions(): Promise<FilterOptions> {
-    const [authors, epochs, genres, kinds] = await Promise.all([
-      this.productDataService.getAuthors(),
-      this.productDataService.getEpochs(),
-      this.productDataService.getGenres(),
-      this.productDataService.getKinds()
-    ])
+  deriveFilterOptions(products: Product[]): FilterOptions {
+    const authors = this.getDistinctValues(products, (p) => p.author)
+    const epochs = this.getDistinctValues(products, (p) => p.epoch)
+    const genres = this.getDistinctValues(products, (p) => p.genre)
+    const kinds = this.getDistinctValues(products, (p) => p.kind)
     
     return {
       authors: ['Wszystkie', ...authors],
@@ -31,6 +29,16 @@ export class ProductFilterFacade {
       genres: ['Wszystkie', ...genres],
       kinds: ['Wszystkie', ...kinds]
     }
+  }
+
+  private getDistinctValues(products: Product[], selector: (p: Product) => string): string[] {
+    const values = new Set(products.map(selector))
+    return Array.from(values).sort()
+  }
+
+  async getFilterOptions(): Promise<FilterOptions> {
+    const products = await this.productDataService.getAll()
+    return this.deriveFilterOptions(products)
   }
 }
 

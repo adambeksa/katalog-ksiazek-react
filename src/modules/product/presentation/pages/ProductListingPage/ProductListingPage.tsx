@@ -4,8 +4,7 @@ import ProductBox from '../../components/ProductBox/ProductBox'
 import Breadcrumbs from '../../../../shared/ui/components/Breadcrumbs/Breadcrumbs'
 import ProductFilters from '../../components/ProductFilters/ProductFilters'
 import './ProductListingPage.css'
-
-import { ProductFilters as IProductFilters } from '../../../application/ProductFilterFacade'
+import { IProductFilters } from '../../../domain/interfaces/ProductFilters'
 
 function ProductListingPage() {
   const [filters, setFilters] = useState<IProductFilters>({

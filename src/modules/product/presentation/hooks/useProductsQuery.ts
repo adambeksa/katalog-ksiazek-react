@@ -14,6 +14,7 @@ export function useProductsQuery() {
   const query = useQuery({
     queryKey: ['products'],
     queryFn: () => productFacade.getAllProducts(),
+    staleTime: Infinity,
   })
 
   return query

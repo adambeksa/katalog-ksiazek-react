@@ -7,9 +7,6 @@ import { mapDetailToProduct } from '../adapters/ProductDetailAdapter'
 
 export class ProductDataService {
   private client: AxiosInstance;
-  private productsCache: Product[] | null = null;
-  private productsCacheTimestamp: number = 0;
-  private readonly CACHE_TTL = 5 * 60 * 1000; // 5 minut
 
   constructor() {
     this.client = axios.create({
@@ -18,19 +15,12 @@ export class ProductDataService {
   }
 
   async getAll(): Promise<Product[]> {
-    const now = Date.now()
-    if (this.productsCache && (now - this.productsCacheTimestamp < this.CACHE_TTL)) {
-      return this.productsCache
-    }
-
     try {
       const res = await this.client.get<ProductListDto[]>('/books')
-      this.productsCache = res.data.map(item => mapListToProduct(item))
-      this.productsCacheTimestamp = now
-      return this.productsCache
+      return res.data.map(item => mapListToProduct(item));
     } catch (error) {
       console.error('Error fetching products:', error)
-      return []
+      return [];
     }
   }
 

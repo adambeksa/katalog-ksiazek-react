@@ -1,9 +1,9 @@
 import ProductBox from '../ProductBox/ProductBox'
 import './PopularProducts.css'
-import { useProductsQuery } from '../../hooks/useProductsQuery'
+import { useProductContext } from '../../context/ProductContext'
 
 function PopularProducts() {
-  const { data: products, isLoading } = useProductsQuery()
+  const { products, loading: isLoading } = useProductContext()
   const popularProducts = products?.slice(0, 3)  // It's mock. Download first 3 products as popular products
 
   return (
