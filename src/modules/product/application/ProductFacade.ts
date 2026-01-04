@@ -1,5 +1,5 @@
-import { Product } from '../domain/Product';
-import { ProductDataService } from '../infrastructure/data-services/ProductDataService';
+import { Product } from "../domain/Product";
+import { ProductDataService } from "../infrastructure/data-services/ProductDataService";
 
 export class ProductFacade {
   private productDataService: ProductDataService;

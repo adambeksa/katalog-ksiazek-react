@@ -1,10 +1,10 @@
-import { productFacade } from '../application/ProductFacade'
+import { productFacade } from "../application/ProductFacade";
 
 /**
  * Hook do zarządzania produktami
  * Łączy warstwę prezentacji z warstwą aplikacji
  */
-import { useQuery } from '@tanstack/react-query'
+import { useQuery } from "@tanstack/react-query";
 
 /**
  * Hook do zarządzania produktami
@@ -12,10 +12,10 @@ import { useQuery } from '@tanstack/react-query'
  */
 export function useProductsCollectionQuery() {
   const query = useQuery({
-    queryKey: ['productsCollection'],
+    queryKey: ["productsCollection"],
     queryFn: () => productFacade.getAllProducts(),
     staleTime: Infinity,
-  })
+  });
 
-  return query
+  return query;
 }

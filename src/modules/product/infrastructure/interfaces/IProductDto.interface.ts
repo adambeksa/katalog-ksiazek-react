@@ -32,7 +32,7 @@ export interface IProductDto {
   children: any[]; // usually empty array
   parent?: string | null;
   preview?: boolean;
-  
+
   // Downloads
   epub?: string;
   mobi?: string;
@@ -41,22 +41,22 @@ export interface IProductDto {
   txt?: string;
   fb2?: string;
   xml?: string;
-  
+
   media: IApiMediaDto[];
-  
+
   audio_length: string;
-  
+
   // Covers & styling
   cover_color: string;
   cover: string;
   simple_cover: string;
   cover_thumb: string;
-  simple_thumb?: string; 
-  
+  simple_thumb?: string;
+
   // ISBNs
   isbn_pdf?: string;
   isbn_epub?: string;
   isbn_mobi?: string;
-  
+
   description?: string; // Sometimes populated directly, sometimes via fragment_data
 }

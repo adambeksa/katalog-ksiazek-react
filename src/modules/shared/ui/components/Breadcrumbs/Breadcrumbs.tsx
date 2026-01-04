@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom'
-import './Breadcrumbs.scss'
+import { Link } from "react-router-dom";
+import "./Breadcrumbs.scss";
 
 interface BreadcrumbItem {
   label: string;
@@ -11,7 +11,7 @@ interface BreadcrumbsProps {
 }
 
 function Breadcrumbs({ items }: BreadcrumbsProps) {
-  if (!items || items.length === 0) return null
+  if (!items || items.length === 0) return null;
 
   return (
     <nav className="breadcrumbs" aria-label="Breadcrumb">
@@ -28,13 +28,15 @@ function Breadcrumbs({ items }: BreadcrumbsProps) {
               </span>
             )}
             {index < items.length - 1 && (
-              <span className="breadcrumbs__separator" aria-hidden="true">&rsaquo;</span>
+              <span className="breadcrumbs__separator" aria-hidden="true">
+                &rsaquo;
+              </span>
             )}
           </li>
         ))}
       </ul>
     </nav>
-  )
+  );
 }
 
-export default Breadcrumbs
+export default Breadcrumbs;

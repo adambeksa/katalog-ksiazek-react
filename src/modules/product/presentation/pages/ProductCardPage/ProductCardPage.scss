@@ -120,11 +120,21 @@
   }
 
   // Modifiers for Skeleton
-  &__skeleton-mb-1 { margin-bottom: 0.25rem; }
-  &__skeleton-mb-2 { margin-bottom: 0.5rem; }
-  &__skeleton-mb-4 { margin-bottom: 1rem; }
-  &__skeleton-mt-4 { margin-top: 1rem; }
-  &__skeleton-mr-2 { margin-right: 0.5rem; }
+  &__skeleton-mb-1 {
+    margin-bottom: 0.25rem;
+  }
+  &__skeleton-mb-2 {
+    margin-bottom: 0.5rem;
+  }
+  &__skeleton-mb-4 {
+    margin-bottom: 1rem;
+  }
+  &__skeleton-mt-4 {
+    margin-top: 1rem;
+  }
+  &__skeleton-mr-2 {
+    margin-right: 0.5rem;
+  }
 
   @include mobile {
     &__details {
@@ -142,4 +152,3 @@
     }
   }
 }
-

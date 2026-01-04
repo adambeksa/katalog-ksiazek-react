@@ -1,5 +1,5 @@
-import { IAudioFormat } from '../../domain/interfaces/IProduct.interface';
-import { IApiMediaDto, IProductDto } from '../interfaces/IProductDto.interface';
+import { IAudioFormat } from "../../domain/interfaces/IProduct.interface";
+import { IApiMediaDto, IProductDto } from "../interfaces/IProductDto.interface";
 
 interface AudioData {
   features: string[];
@@ -9,32 +9,33 @@ interface AudioData {
 }
 
 export const extractAudioData = (media: IApiMediaDto[]): AudioData => {
-  const features: string[] = []
-  const audioFormats: Record<string, IAudioFormat[]> = {}
-  let audioDirector = ''
-  let audioArtist = ''
+  const features: string[] = [];
+  const audioFormats: Record<string, IAudioFormat[]> = {};
+  let audioDirector = "";
+  let audioArtist = "";
 
   if (media && media.length > 0) {
     media.forEach((m: IApiMediaDto) => {
-      const type = m.type
+      const type = m.type;
       if (!audioFormats[type]) {
-        audioFormats[type] = []
+        audioFormats[type] = [];
       }
       audioFormats[type].push({
-        name: m.name || type || 'Audio',
-        url: m.url
-      })
-    })
-    
+        name: m.name || type || "Audio",
+        url: m.url,
+      });
+    });
+
     if (Object.keys(audioFormats).length > 0) {
-      features.push('audiobook')
+      features.push("audiobook");
     }
-    
-    const mediaWithMetadata = media.find(m => m.director || m.artist) || media[0]
-    
+
+    const mediaWithMetadata =
+      media.find((m) => m.director || m.artist) || media[0];
+
     if (mediaWithMetadata) {
-      audioDirector = mediaWithMetadata.director || ''
-      audioArtist = mediaWithMetadata.artist || ''
+      audioDirector = mediaWithMetadata.director || "";
+      audioArtist = mediaWithMetadata.artist || "";
     }
   }
 
@@ -42,20 +43,22 @@ export const extractAudioData = (media: IApiMediaDto[]): AudioData => {
     features,
     audioFormats,
     audioDirector,
-    audioArtist
-  }
-}
+    audioArtist,
+  };
+};
 
-export const extractEbookFormats = (data: IProductDto): Record<string, string> => {
-  const formats: Record<string, string> = {}
+export const extractEbookFormats = (
+  data: IProductDto,
+): Record<string, string> => {
+  const formats: Record<string, string> = {};
 
-  if (data.pdf) formats['pdf'] = data.pdf
-  if (data.epub) formats['epub'] = data.epub
-  if (data.mobi) formats['mobi'] = data.mobi
-  if (data.txt) formats['txt'] = data.txt
-  if (data.fb2) formats['fb2'] = data.fb2
-  if (data.xml) formats['xml'] = data.xml
-  if (data.html) formats['html'] = data.html
-  
-  return formats
-}
+  if (data.pdf) formats["pdf"] = data.pdf;
+  if (data.epub) formats["epub"] = data.epub;
+  if (data.mobi) formats["mobi"] = data.mobi;
+  if (data.txt) formats["txt"] = data.txt;
+  if (data.fb2) formats["fb2"] = data.fb2;
+  if (data.xml) formats["xml"] = data.xml;
+  if (data.html) formats["html"] = data.html;
+
+  return formats;
+};

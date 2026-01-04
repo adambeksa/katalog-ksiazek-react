@@ -1,5 +1,5 @@
-import { useState, useRef, useEffect } from 'react'
-import './FilterSelect.scss'
+import { useState, useRef, useEffect } from "react";
+import "./FilterSelect.scss";
 
 interface FilterSelectProps {
   label: string;
@@ -9,38 +9,44 @@ interface FilterSelectProps {
 }
 
 function FilterSelect({ label, value, options, onChange }: FilterSelectProps) {
-  const [isOpen, setIsOpen] = useState(false)
-  const [searchQuery, setSearchQuery] = useState('')
-  const containerRef = useRef<HTMLDivElement>(null)
+  const [isOpen, setIsOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  const filteredOptions = options.filter(option =>
-    option.toLowerCase().includes(searchQuery.toLowerCase())
-  )
+  const filteredOptions = options.filter((option) =>
+    option.toLowerCase().includes(searchQuery.toLowerCase()),
+  );
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
-        setIsOpen(false)
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false);
       }
     }
-    document.addEventListener('mousedown', handleClickOutside)
-    return () => document.removeEventListener('mousedown', handleClickOutside)
-  }, [])
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   const handleToggle = () => {
-    setIsOpen(!isOpen)
-    if (!isOpen) setSearchQuery('')
-  }
+    setIsOpen(!isOpen);
+    if (!isOpen) setSearchQuery("");
+  };
 
   const handleSelect = (option: string) => {
-    onChange(option)
-    setIsOpen(false)
-  }
+    onChange(option);
+    setIsOpen(false);
+  };
 
   return (
     <div className="filter-select" ref={containerRef}>
       <label className="filter-select__label">{label}</label>
-      <div className={`filter-select__toggle ${isOpen ? 'active' : ''}`} onClick={handleToggle}>
+      <div
+        className={`filter-select__toggle ${isOpen ? "active" : ""}`}
+        onClick={handleToggle}
+      >
         <span className="filter-select__value">{value}</span>
         <span className="filter-select__arrow">▼</span>
       </div>
@@ -64,7 +70,7 @@ function FilterSelect({ label, value, options, onChange }: FilterSelectProps) {
               filteredOptions.map((option) => (
                 <li
                   key={option}
-                  className={`filter-select__item ${option === value ? 'selected' : ''}`}
+                  className={`filter-select__item ${option === value ? "selected" : ""}`}
                   onClick={() => handleSelect(option)}
                 >
                   {option}
@@ -77,7 +83,7 @@ function FilterSelect({ label, value, options, onChange }: FilterSelectProps) {
         </div>
       )}
     </div>
-  )
+  );
 }
 
-export default FilterSelect
+export default FilterSelect;

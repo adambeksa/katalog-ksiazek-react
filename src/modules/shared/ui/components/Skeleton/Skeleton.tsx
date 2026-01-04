@@ -1,4 +1,4 @@
-import './Skeleton.scss'
+import "./Skeleton.scss";
 
 interface SkeletonProps {
   width?: string | number;
@@ -7,16 +7,19 @@ interface SkeletonProps {
   borderRadius?: string | number;
 }
 
-function Skeleton({ width, height, className = '', borderRadius }: SkeletonProps) {
+function Skeleton({
+  width,
+  height,
+  className = "",
+  borderRadius,
+}: SkeletonProps) {
   const style = {
     width,
     height,
-    borderRadius
-  }
+    borderRadius,
+  };
 
-  return (
-    <div className={`skeleton ${className}`} style={style} />
-  )
+  return <div className={`skeleton ${className}`} style={style} />;
 }
 
-export default Skeleton
+export default Skeleton;

@@ -24,6 +24,14 @@ $color-footer-bg: #34495e;
 $color-header-bg: #2c3e50;
 
 // Gradients
-$gradient-primary: linear-gradient(135deg, $color-primary 0%, $color-secondary 100%);
-$gradient-card: linear-gradient(135deg, $color-bg-gradient-start 0%, $color-bg-gradient-end 100%);
+$gradient-primary: linear-gradient(
+  135deg,
+  $color-primary 0%,
+  $color-secondary 100%
+);
+$gradient-card: linear-gradient(
+  135deg,
+  $color-bg-gradient-start 0%,
+  $color-bg-gradient-end 100%
+);
 $gradient-surface: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);

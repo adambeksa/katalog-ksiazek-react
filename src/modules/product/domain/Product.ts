@@ -1,4 +1,4 @@
-import { IProduct, IAudioFormat } from './interfaces/IProduct.interface'
+import { IProduct, IAudioFormat } from "./interfaces/IProduct.interface";
 
 /**
  * Encja produktu - reprezentuje domenę produktu w systemie
@@ -48,31 +48,31 @@ export class Product implements IProduct {
     genre,
     kind,
     features = [],
-    url = '',
-    license = '',
-    audioDirector = '',
-    audioArtist = '',
+    url = "",
+    license = "",
+    audioDirector = "",
+    audioArtist = "",
     formats = {},
     audioFormats = {},
   }: ProductConstructorParams) {
-    this.id = id
-    this.name = name
-    this.image = image
-    this.description = description
-    this.author = author
-    this.epoch = epoch
-    this.genre = genre
-    this.kind = kind
-    this.features = features
-    this.url = url
-    this.license = license
-    this.audioDirector = audioDirector
-    this.audioArtist = audioArtist
-    this.formats = formats
-    this.audioFormats = audioFormats
+    this.id = id;
+    this.name = name;
+    this.image = image;
+    this.description = description;
+    this.author = author;
+    this.epoch = epoch;
+    this.genre = genre;
+    this.kind = kind;
+    this.features = features;
+    this.url = url;
+    this.license = license;
+    this.audioDirector = audioDirector;
+    this.audioArtist = audioArtist;
+    this.formats = formats;
+    this.audioFormats = audioFormats;
   }
 
   get hasAudio(): boolean {
-    return this.audioFormats && Object.keys(this.audioFormats).length > 0
+    return this.audioFormats && Object.keys(this.audioFormats).length > 0;
   }
 }

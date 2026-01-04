@@ -1,16 +1,16 @@
-import './HomePage.scss'
-import PopularProducts from '../../components/PopularProducts/PopularProducts'
-import MainBanner from '../../../../banner/presentation/components/MainBanner/MainBanner'
+import "./HomePage.scss";
+import PopularProducts from "../../components/PopularProducts/PopularProducts";
+import MainBanner from "../../../../banner/presentation/components/MainBanner/MainBanner";
 
 function HomePage() {
   return (
     <div className="home">
       <div className="container">
-        <MainBanner/>
-        <PopularProducts/>
+        <MainBanner />
+        <PopularProducts />
       </div>
     </div>
-  )
+  );
 }
 
-export default HomePage
+export default HomePage;

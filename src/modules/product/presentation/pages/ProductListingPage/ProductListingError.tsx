@@ -1,4 +1,4 @@
-import './ProductListingPage.scss'
+import "./ProductListingPage.scss";
 
 interface ProductListingErrorProps {
   message?: string;
@@ -11,7 +11,7 @@ function ProductListingError({ message }: ProductListingErrorProps) {
         <div className="product-listing__error">Błąd: {message}</div>
       </div>
     </div>
-  )
+  );
 }
 
-export default ProductListingError
+export default ProductListingError;
