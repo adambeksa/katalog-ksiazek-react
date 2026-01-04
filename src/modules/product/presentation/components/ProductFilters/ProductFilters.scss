@@ -1,0 +1,10 @@
+.product-filters {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: $color-bg-white;
+  border-radius: 10px;
+  @include card-shadow;
+  flex-wrap: wrap;
+}

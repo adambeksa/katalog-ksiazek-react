@@ -1,0 +1,27 @@
+.product-box-skeleton {
+  background: $color-bg-white;
+  border-radius: 10px;
+  overflow: hidden;
+  @include card-shadow;
+  @include flex-column;
+  height: 100%;
+
+  &__info {
+    padding: 1.5rem;
+    @include flex-column;
+    flex: 1;
+  }
+
+  &__mb-1 {
+    margin-bottom: 0.5rem;
+  }
+  &__mb-2 {
+    margin-bottom: 1rem;
+  }
+  &__mb-3 {
+    margin-bottom: 1.5rem;
+  }
+  &__mt-auto {
+    margin-top: auto;
+  }
+}

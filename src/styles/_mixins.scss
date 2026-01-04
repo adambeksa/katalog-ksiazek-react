@@ -1,0 +1,63 @@
+@use "sass:math";
+
+// Flexbox Mixins
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+// Media Queries
+@mixin mobile {
+  @media (max-width: 768px) {
+    @content;
+  }
+}
+
+// Visual Effects
+@mixin card-shadow {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+@mixin hover-lift {
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  }
+}
+
+@mixin link-transition($color, $hover-color) {
+  color: $color;
+  transition: color 0.3s;
+  text-decoration: none;
+
+  &:hover {
+    color: $hover-color;
+  }
+}
+
+@mixin button-base {
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-weight: 600;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+}

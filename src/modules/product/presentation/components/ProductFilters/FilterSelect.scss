@@ -1,0 +1,149 @@
+.filter-select {
+  @include flex-column;
+  gap: 0.5rem;
+  position: relative;
+  min-width: 200px;
+
+  &__label {
+    font-weight: 600;
+    color: $color-text-main;
+    font-size: 0.95rem;
+  }
+
+  &__toggle {
+    @include flex-between;
+    padding: 0.6rem 1rem;
+    background: $color-bg-white;
+    border: 2px solid $color-border;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-height: 42px;
+
+    &:hover {
+      border-color: $color-primary;
+      box-shadow: 0 2px 8px rgba(102, 126, 234, 0.1);
+    }
+
+    &.active {
+      border-color: $color-primary;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+
+      .filter-select__arrow {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  &__value {
+    color: $color-text-main;
+    font-size: 1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right: 1rem;
+  }
+
+  &__arrow {
+    font-size: 0.7rem;
+    color: $color-primary;
+    transition: transform 0.3s;
+  }
+
+  &__dropdown {
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    right: 0;
+    background: $color-bg-white;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    border: 1px solid $color-border;
+    z-index: 1000;
+    overflow: hidden;
+    animation: slideDown 0.2s ease-out;
+  }
+
+  &__search-wrapper {
+    padding: 0.75rem;
+    border-bottom: 1px solid #f0f0f0;
+    background: $color-bg-gray;
+  }
+
+  &__search {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid $color-border;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.3s;
+
+    &:focus {
+      border-color: $color-primary;
+    }
+  }
+
+  &__options {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 250px;
+    overflow-y: auto;
+
+    /* Custom Scrollbar */
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #cbd5e0;
+      border-radius: 3px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background: $color-text-light;
+    }
+  }
+
+  &__item {
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    font-size: 0.95rem;
+    color: $color-text-secondary;
+    transition: all 0.2s;
+
+    &:hover {
+      background-color: #f0f4ff;
+      color: $color-primary;
+    }
+
+    &.selected {
+      background-color: $color-primary;
+      color: $color-bg-white;
+    }
+  }
+
+  &__no-results {
+    padding: 1rem;
+    text-align: center;
+    color: $color-text-light;
+    font-size: 0.9rem;
+    font-style: italic;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

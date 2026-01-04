@@ -1,0 +1,41 @@
+.banner {
+  text-align: center;
+  padding: 4rem 1rem;
+  background: $gradient-primary;
+  color: $color-bg-white;
+  border-radius: 10px;
+  margin-bottom: 3rem;
+
+  &__title {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  &__text {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+  }
+
+  &__link {
+    color: $color-bg-white;
+    text-decoration: underline;
+    transition: all 0.3s;
+
+    &:hover {
+      font-weight: bold;
+    }
+  }
+
+  &__cta {
+    @include button-base;
+    padding: 1rem 2rem;
+    background-color: $color-bg-white;
+    color: $color-primary;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+  }
+}

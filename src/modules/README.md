@@ -1,11 +1,13 @@
 # Domain Modules
 
 ## Overview
+
 This directory contains domain-driven modules organized by business domains. Each module represents a distinct business domain and is further divided into feature-based libraries (libs).
 
 ## Architecture Philosophy
 
 ### Modular Structure
+
 - **Domain Modules**: Top-level organization by business domain (e.g., `product`, `user`, `order`)
 - **Feature Libs**: Each module contains focused libraries for specific features
 - **Layered Architecture**: Each lib follows a three-layer pattern
@@ -23,18 +25,21 @@ lib-name/
 ```
 
 #### Application Layer
+
 - Orchestrates business workflows
 - Implements use cases
 - Coordinates between domain and infrastructure
 - **Dependencies**: Can use domain layer
 
 #### Domain Layer
+
 - Contains core business logic
 - Defines entities, value objects, and domain events
 - Enforces business rules
 - **Dependencies**: Should be independent (no dependencies on other layers)
 
 #### Infrastructure Layer
+
 - Handles external concerns (APIs, databases, etc.)
 - Implements domain interfaces
 - Provides technical implementations
@@ -43,9 +48,11 @@ lib-name/
 ## Current Modules
 
 ### Product
+
 Product-related functionality including product display, listing, and management.
 
 **Libs:**
+
 - `product-card`: Individual product display and interaction
 - `product-listing`: Product collection views and navigation
 
@@ -77,13 +84,13 @@ When creating a new domain module:
 
 ```javascript
 // Import from specific lib
-import { SomeFeature } from '@/modules/domain-name/lib-name';
+import { SomeFeature } from "@/modules/domain-name/lib-name";
 
 // Import from domain module (if exported)
-import { SomeFeature } from '@/modules/domain-name';
+import { SomeFeature } from "@/modules/domain-name";
 
 // Import from specific layer (if needed for testing)
-import { SomeEntity } from '@/modules/domain-name/lib-name/domain';
+import { SomeEntity } from "@/modules/domain-name/lib-name/domain";
 ```
 
 ## Migration Strategy
