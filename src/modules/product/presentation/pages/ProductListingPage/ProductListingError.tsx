@@ -8,7 +8,7 @@ function ProductListingError({ message }: ProductListingErrorProps) {
   return (
     <div className="product-listing">
       <div className="container">
-        <div className="error">Błąd: {message}</div>
+        <div className="product-listing__error">Błąd: {message}</div>
       </div>
     </div>
   )

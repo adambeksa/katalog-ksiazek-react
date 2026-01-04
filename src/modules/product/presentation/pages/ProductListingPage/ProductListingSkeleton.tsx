@@ -26,7 +26,7 @@ function ProductListingSkeleton({ filters, filterOptions, onFilterChange }: Prod
           onFilterChange={onFilterChange}
         />
 
-        <div className="products-grid">
+        <div className="product-listing__grid">
           {Array.from({ length: 8 }).map((_, index) => (
             <ProductBoxSkeleton key={index} />
           ))}

@@ -38,20 +38,20 @@ function FilterSelect({ label, value, options, onChange }: FilterSelectProps) {
   }
 
   return (
-    <div className="filter-select-container" ref={containerRef}>
-      <label className="filter-select-label">{label}</label>
-      <div className={`filter-select-toggle ${isOpen ? 'active' : ''}`} onClick={handleToggle}>
-        <span className="filter-select-value">{value}</span>
-        <span className="filter-select-arrow">▼</span>
+    <div className="filter-select" ref={containerRef}>
+      <label className="filter-select__label">{label}</label>
+      <div className={`filter-select__toggle ${isOpen ? 'active' : ''}`} onClick={handleToggle}>
+        <span className="filter-select__value">{value}</span>
+        <span className="filter-select__arrow">▼</span>
       </div>
 
       {isOpen && (
-        <div className="filter-select-dropdown">
+        <div className="filter-select__dropdown">
           {options.length > 5 && (
-            <div className="filter-select-search-wrapper">
+            <div className="filter-select__search-wrapper">
               <input
                 type="text"
-                className="filter-select-search"
+                className="filter-select__search"
                 placeholder="Szukaj..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
@@ -59,19 +59,19 @@ function FilterSelect({ label, value, options, onChange }: FilterSelectProps) {
               />
             </div>
           )}
-          <ul className="filter-select-options">
+          <ul className="filter-select__options">
             {filteredOptions.length > 0 ? (
               filteredOptions.map((option) => (
                 <li
                   key={option}
-                  className={`filter-select-item ${option === value ? 'selected' : ''}`}
+                  className={`filter-select__item ${option === value ? 'selected' : ''}`}
                   onClick={() => handleSelect(option)}
                 >
                   {option}
                 </li>
               ))
             ) : (
-              <li className="filter-select-no-results">Brak wyników</li>
+              <li className="filter-select__no-results">Brak wyników</li>
             )}
           </ul>
         </div>

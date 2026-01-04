@@ -1,13 +1,15 @@
-.popular-products h2 {
-  text-align: center;
-  font-size: 2rem;
-  margin-bottom: 2rem;
-}
+.popular-products {
+  &__title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
 
-.products-preview {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
 }
 
 

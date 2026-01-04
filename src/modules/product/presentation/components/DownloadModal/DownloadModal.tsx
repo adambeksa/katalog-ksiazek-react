@@ -36,16 +36,16 @@ function DownloadModal({ product, onClose, title, formats }: DownloadModalProps)
   }
 
   return (
-    <div className="download-modal-overlay" onClick={onClose}>
-      <div className="download-modal-content" onClick={(e) => e.stopPropagation()}>
-        <button className="modal-close-button" onClick={onClose}>&times;</button>
+    <div className="download-modal" onClick={onClose}>
+      <div className="download-modal__content" onClick={(e) => e.stopPropagation()}>
+        <button className="download-modal__close" onClick={onClose}>&times;</button>
         
         {!selectedFormat ? (
           <>
             <h2>{title || 'Wybierz format pobierania'}</h2>
             <p>Książka: <strong>{product.name}</strong></p>
             
-            <div className="formats-list">
+            <div className="download-modal__formats-list">
               {availableFormats.length > 0 ? (
                 availableFormats.map(([key, val]) => (
                   <a 
@@ -53,34 +53,34 @@ function DownloadModal({ product, onClose, title, formats }: DownloadModalProps)
                     href={Array.isArray(val) ? '#' : (val as string)} 
                     target={Array.isArray(val) ? undefined : "_blank"}
                     rel={Array.isArray(val) ? undefined : "noopener noreferrer"}
-                    className="format-link"
+                    className="download-modal__format-link"
                     onClick={(e) => handleFormatClick(key, val, e)}
                   >
                     {Array.isArray(val) ? `Pobierz ${key.toUpperCase()}` : `Pobierz ${key.toUpperCase()}`}
                   </a>
                 ))
               ) : (
-                <p className="no-formats">Brak dostępnych formatów do pobrania.</p>
+                <p className="download-modal__no-formats">Brak dostępnych formatów do pobrania.</p>
               )}
             </div>
           </>
         ) : (
           <>
-            <div className="modal-header-actions">
-              <button className="back-button-modal" onClick={handleBack}>← Wróć</button>
+            <div className="download-modal__header-actions">
+              <button className="download-modal__back-button" onClick={handleBack}>← Wróć</button>
               <h2>Format: {selectedFormat.key.toUpperCase()}</h2>
             </div>
             <p>Wybierz plik do pobrania:</p>
-            <div className="files-list">
+            <div className="download-modal__files-list">
               {selectedFormat.files.map((file: any, index: number) => (
                 <a 
                   key={index} 
                   href={file.url} 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="file-link"
+                  className="download-modal__file-link"
                 >
-                  <span className="file-name">{file.name}</span>
+                  <span className="download-modal__file-name">{file.name}</span>
                 </a>
               ))}
             </div>

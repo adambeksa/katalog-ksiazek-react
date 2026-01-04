@@ -40,33 +40,33 @@ function ProductCardPage() {
           { label: 'Katalog książek', path: ROUTES.PRODUCTS },
           { label: product.name }
         ]} />
-        <button onClick={() => navigate(-1)} className="back-link">
+        <button onClick={() => navigate(-1)} className="product-card-page__back-link">
           ← Powrót
         </button>
 
-        <div className="product-details">
-          <div className="product-image-section">
-            <img className="product-main-image" src={product.image} alt={product.name}/>
+        <div className="product-card-page__details">
+          <div className="product-card-page__image-section">
+            <img className="product-card-page__main-image" src={product.image} alt={product.name}/>
           </div>
 
-          <div className="product-info-section">
+          <div className="product-card-page__info-section">
             <h2>{product.author}</h2>
             <h1>{product.name}</h1>
 
-            <div className="product-description-section">
+            <div className="product-card-page__description-section">
               <h3>Opis lektury</h3>
               <div 
-                className="product-description-content"
+                className="product-card-page__description-content"
                 dangerouslySetInnerHTML={{ __html: product.description }}
               />
             </div>
 
             <ProductAttribution product={product} />
 
-            <div className="product-actions">
+            <div className="product-card-page__actions">
               <button
                 onClick={handleDownload}
-                className="read-button"
+                className="product-card-page__read-button"
               >
                 Przeczytaj książkę
               </button>
@@ -74,7 +74,7 @@ function ProductCardPage() {
               {product.hasAudio && (
                 <button
                   onClick={handleAudioDownload}
-                  className="audio-button"
+                  className="product-card-page__audio-button"
                 >
                   Posłuchaj audiobooka
                 </button>

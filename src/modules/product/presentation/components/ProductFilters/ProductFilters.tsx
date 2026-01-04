@@ -11,7 +11,7 @@ interface ProductFiltersProps {
 
 function ProductFilters({ filters, filterOptions, onFilterChange }: ProductFiltersProps) {
   return (
-    <div className="filters">
+    <div className="product-filters">
       <FilterSelect
         label="Autor:"
         value={filters.author || ''}

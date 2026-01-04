@@ -19,14 +19,14 @@ function ProductBox({ product }: ProductBoxProps) {
 
   return (
     <div className="product-box">
-      <img className="product-image" src={product.image} alt={product.name} />
-      <div className="product-info">
-        <h3>{product.name}</h3>
+      <img className="product-box__image" src={product.image} alt={product.name} />
+      <div className="product-box__info">
+        <h3 className="product-box__title">{product.name}</h3>
         <div 
-          className="product-description"
+          className="product-box__description"
           dangerouslySetInnerHTML={{ __html: product.description }}
         />
-        <Link to={ROUTES.PRODUCT_DETAILS(product.id)} className="product-link">
+        <Link to={ROUTES.PRODUCT_DETAILS(product.id)} className="product-box__link">
           Zobacz szczegóły
         </Link>
       </div>

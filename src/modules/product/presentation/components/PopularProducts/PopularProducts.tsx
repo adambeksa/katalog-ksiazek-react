@@ -9,15 +9,15 @@ function PopularProducts() {
 
   return (
     <section className="popular-products">
-      <h2>Popularne lektury</h2>
+      <h2 className="popular-products__title">Popularne lektury</h2>
       {isLoading ? (
-        <div className="products-preview">
+        <div className="popular-products__grid">
           {Array.from({ length: 3 }).map((_, index) => (
             <ProductBoxSkeleton key={index} />
           ))}
         </div>
       ) : (
-        <div className="products-preview">
+        <div className="popular-products__grid">
           {popularProducts?.map(product => (
             <ProductBox key={product.id} product={product} />
           ))}

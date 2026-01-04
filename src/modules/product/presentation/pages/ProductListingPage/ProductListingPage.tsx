@@ -52,14 +52,14 @@ function ProductListingPage() {
           onFilterChange={handleFilterChange}
         />
 
-        <div className="products-grid">
+        <div className="product-listing__grid">
           {products.map(product => (
             <ProductBox key={product.id} product={product} />
           ))}
         </div>
 
         {products.length === 0 ? (
-          <div className="no-products">
+          <div className="product-listing__empty">
             <p>Brak książek w wybranej kategorii.</p>
           </div>
         ) : (
@@ -67,17 +67,17 @@ function ProductListingPage() {
             <button 
               disabled={page === 1} 
               onClick={() => setPage(p => p - 1)}
-              className="pagination-button"
+              className="pagination__button"
             >
               Poprzednia
             </button>
-            <span className="pagination-info">
+            <span className="pagination__info">
               Strona {page} z {totalPages}
             </span>
             <button 
               disabled={page === totalPages} 
               onClick={() => setPage(p => p + 1)}
-              className="pagination-button"
+              className="pagination__button"
             >
               Następna
             </button>
