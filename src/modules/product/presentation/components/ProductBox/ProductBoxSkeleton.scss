@@ -1,16 +1,14 @@
 .product-box-skeleton {
-  background: white;
+  background: $color-bg-white;
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
+  @include card-shadow;
+  @include flex-column;
   height: 100%;
 
   &__info {
     padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
+    @include flex-column;
     flex: 1;
   }
 

@@ -1,6 +1,6 @@
 .product-attribution {
-  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-  border-left: 4px solid #667eea;
+  background: $gradient-surface;
+  border-left: 4px solid $color-primary;
   border-radius: 8px;
   padding: 1.5rem;
   margin: 2rem 0;
@@ -9,7 +9,7 @@
   &__header {
     margin-bottom: 1.25rem;
     padding-bottom: 1rem;
-    border-bottom: 2px solid #dee2e6;
+    border-bottom: 2px solid $color-border-light;
   }
 
   &__logo {
@@ -19,37 +19,33 @@
   }
 
   &__content {
-    display: flex;
-    flex-direction: column;
+    @include flex-column;
     gap: 0.75rem;
   }
 
   &__item {
     font-size: 0.95rem;
     line-height: 1.6;
-    color: #495057;
+    color: $color-text-secondary;
 
     strong {
-      color: #2c3e50;
+      color: $color-text-main;
       font-weight: 600;
       margin-right: 0.5rem;
     }
   }
 
   &__link {
-    color: #667eea;
-    text-decoration: none;
+    @include link-transition($color-primary, $color-primary-dark);
     font-weight: 600;
-    transition: all 0.3s ease;
     border-bottom: 1px solid transparent;
 
     &:hover {
-      color: #5568d3;
-      border-bottom-color: #5568d3;
+      border-bottom-color: $color-primary-dark;
     }
   }
 
-  @media (max-width: 768px) {
+  @include mobile {
     padding: 1.25rem;
     margin: 1.5rem 0;
 

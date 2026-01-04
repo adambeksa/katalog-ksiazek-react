@@ -19,23 +19,20 @@
   }
 
   &__link {
-    color: #667eea;
-    text-decoration: none;
-    transition: color 0.3s;
+    @include link-transition($color-primary, $color-primary-dark);
 
     &:hover {
       text-decoration: underline;
-      color: #5568d3;
     }
   }
 
   &__current {
-    color: #666;
+    color: $color-text-muted;
     font-weight: 500;
   }
 
   &__separator {
-    color: #bdc3c7;
+    color: #bdc3c7; // Keep as is or add to variables if frequent
     font-weight: bold;
   }
 }

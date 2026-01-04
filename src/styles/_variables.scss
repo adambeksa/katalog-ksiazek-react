@@ -1,0 +1,29 @@
+// Colors
+$color-primary: #667eea;
+$color-primary-dark: #5568d3;
+$color-secondary: #764ba2;
+$color-bg-gradient-start: #f5f7fa;
+$color-bg-gradient-end: #c3cfe2;
+
+$color-text-main: #2c3e50;
+$color-text-secondary: #4a5568;
+$color-text-muted: #666666;
+$color-text-light: #a0aec0;
+
+$color-bg-light: #f5f7fa;
+$color-bg-white: #ffffff;
+$color-bg-gray: #f8f9fa;
+$color-border: #e0e0e0;
+$color-border-light: #dee2e6;
+
+$color-error: #e74c3c;
+$color-success: #27ae60;
+$color-success-dark: #219150;
+
+$color-footer-bg: #34495e;
+$color-header-bg: #2c3e50;
+
+// Gradients
+$gradient-primary: linear-gradient(135deg, $color-primary 0%, $color-secondary 100%);
+$gradient-card: linear-gradient(135deg, $color-bg-gradient-start 0%, $color-bg-gradient-end 100%);
+$gradient-surface: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);

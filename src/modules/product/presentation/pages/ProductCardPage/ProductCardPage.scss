@@ -4,27 +4,21 @@
   &__back-link {
     background: none;
     border: none;
-    color: #667eea;
+    @include link-transition($color-primary, $color-primary-dark);
     font-size: 1rem;
     cursor: pointer;
     padding: 0.5rem 0;
     margin-bottom: 2rem;
-    transition: color 0.3s;
-
-    &:hover {
-      color: #5568d3;
-      text-decoration: underline;
-    }
   }
 
   &__details {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 3rem;
-    background: white;
+    background: $color-bg-white;
     padding: 2rem;
     border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    @include card-shadow;
   }
 
   &__image-section {
@@ -34,11 +28,9 @@
   &__main-image {
     width: 100%;
     height: 400px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include flex-center;
     font-size: 10rem;
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    background: $gradient-card;
     border-radius: 10px;
     margin-bottom: 1rem;
   }
@@ -46,12 +38,12 @@
   &__info-section {
     h1 {
       font-size: 2rem;
-      color: #2c3e50;
+      color: $color-text-main;
     }
 
     h2 {
       font-size: 1rem;
-      color: #2c3e50;
+      color: $color-text-main;
     }
   }
 
@@ -59,35 +51,31 @@
     margin-bottom: 2rem;
 
     h3 {
-      color: #2c3e50;
+      color: $color-text-main;
       margin-bottom: 1rem;
     }
   }
 
   &__description-content {
-    color: #666;
+    color: $color-text-muted;
     line-height: 1.6;
   }
 
   &__actions {
     padding-top: 2rem;
-    border-top: 1px solid #e0e0e0;
+    border-top: 1px solid $color-border;
   }
 
   &__read-button {
+    @include button-base;
     width: 100%;
     padding: 1rem 2rem;
-    background-color: #667eea;
-    color: white;
-    border: none;
-    border-radius: 5px;
+    background-color: $color-primary;
+    color: $color-bg-white;
     font-size: 1.1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.3s;
 
     &:hover:not(:disabled) {
-      background-color: #5568d3;
+      background-color: $color-primary-dark;
     }
 
     &:disabled {
@@ -97,20 +85,16 @@
   }
 
   &__audio-button {
+    @include button-base;
     width: 100%;
     padding: 1rem 2rem;
-    background-color: #27ae60;
-    color: white;
-    border: none;
-    border-radius: 5px;
+    background-color: $color-success;
+    color: $color-bg-white;
     font-size: 1.1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.3s;
     margin-top: 1rem;
 
     &:hover {
-      background-color: #219150;
+      background-color: $color-success-dark;
     }
   }
 
@@ -119,22 +103,19 @@
     padding: 4rem 2rem;
 
     h2 {
-      color: #2c3e50;
+      color: $color-text-main;
       margin-bottom: 2rem;
     }
   }
 
   &__back-button {
-    display: inline-block;
+    @include button-base;
     padding: 1rem 2rem;
-    background-color: #667eea;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s;
+    background-color: $color-primary;
+    color: $color-bg-white;
 
     &:hover {
-      background-color: #5568d3;
+      background-color: $color-primary-dark;
     }
   }
 
@@ -145,7 +126,7 @@
   &__skeleton-mt-4 { margin-top: 1rem; }
   &__skeleton-mr-2 { margin-right: 0.5rem; }
 
-  @media (max-width: 768px) {
+  @include mobile {
     &__details {
       grid-template-columns: 1fr;
       gap: 2rem;
