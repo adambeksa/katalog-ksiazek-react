@@ -23,7 +23,7 @@ export const mapDetailToProduct = (data: IProductDto): Product => {
     kind: data.kinds?.[0]?.name || "",
     url: data.url,
     features,
-    license: "Domena publiczna", //TODO: change to real license
+    // license: "Domena publiczna", //TODO: change to real license
     audioDirector,
     audioArtist,
     formats,
