@@ -5,7 +5,7 @@ import "./MainBanner.scss";
 function MainBanner() {
   return (
     <section className="banner">
-      <h1 className="banner__title">Witam w bibliotece!</h1>
+      <h1 className="banner__title">Witam w bibliotece Piotra!</h1>
       <p className="banner__text">
         Wszystkie dane o książkach pochodzą z serwisu{" "}
         <a href="https://wolnelektury.pl/" className="banner__link">
