@@ -2,74 +2,85 @@
   min-height: 100vh;
   @include flex-column;
 
-  &__header {
-    background-color: $color-header-bg;
-    color: $color-bg-white;
-    padding: 1rem 0;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-
   &__main {
     flex: 1;
-    padding: 2rem 0;
   }
+}
 
-  &__footer {
-    background-color: $color-footer-bg;
-    color: $color-bg-white;
-    padding: 1.5rem 0;
-    margin-top: auto;
-  }
+.container {
+  @include container;
 }
 
 .header {
+  background: $paper;
+  border-bottom: $rule-heavy;
+  @include section-margin-bottom;
+
   &__container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
-    @include flex-between;
+    @include container;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: $space-3 $space-8;
+    padding-top: $space-6;
+    padding-bottom: $space-3;
   }
 
   &__logo {
+    color: $ink;
     text-decoration: none;
-    color: $color-bg-white;
 
-    h1 {
-      margin: 0;
-      font-size: 1.5rem;
+    &:hover .header__title {
+      color: $signal;
     }
   }
 
-  &__nav {
-    display: flex;
-    gap: 2rem;
+  &__title {
+    @include heading;
+    transition: color $transition;
   }
 }
 
-.nav {
+.navigation {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-6;
+
   &__link {
-    color: $color-bg-white;
+    padding-bottom: 2px;
+    border-bottom: 2px solid transparent;
+    color: $ink;
+    font-size: $text-sm;
+    font-weight: 700;
     text-decoration: none;
-    font-weight: 500;
-    transition: opacity 0.3s;
+    transition:
+      color $transition,
+      border-color $transition;
 
     &:hover {
-      opacity: 0.8;
+      color: $signal;
+    }
+
+    &[aria-current="page"],
+    &.router-link-exact-active {
+      border-bottom-color: $signal;
     }
   }
 }
 
 .footer {
-  &__container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
-    text-align: center;
-  }
-}
+  margin-top: $space-16;
+  border-top: $rule-heavy;
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
+  &__container {
+    @include container;
+    padding-top: $space-3;
+    padding-bottom: $space-8;
+  }
+
+  &__text {
+    font-size: $text-sm;
+    color: $mid;
+  }
 }

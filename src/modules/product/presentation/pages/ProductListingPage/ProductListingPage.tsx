@@ -1,5 +1,8 @@
 import { useState } from "react";
-import { useFilteredProducts } from "../../../hooks/useFilteredProducts";
+import {
+  PAGE_SIZE,
+  useFilteredProducts,
+} from "../../../hooks/useFilteredProducts";
 import ProductBox from "../../components/ProductBox/ProductBox";
 import Breadcrumbs from "../../../../shared/ui/components/Breadcrumbs/Breadcrumbs";
 import ProductFilters from "../../components/ProductFilters/ProductFilters";
@@ -7,6 +10,7 @@ import "./ProductListingPage.scss";
 import { IProductFilters } from "../../../domain/interfaces/IProductFilters.interface";
 import ProductListingSkeleton from "./ProductListingSkeleton";
 import ProductListingError from "./ProductListingError";
+import ProductListingHead from "./ProductListingHead";
 
 function ProductListingPage() {
   const [filters, setFilters] = useState<IProductFilters>({
@@ -55,7 +59,11 @@ function ProductListingPage() {
           onFilterChange={handleFilterChange}
         />
 
-        <div className="product-listing__grid">
+        <ProductListingHead />
+        <div
+          className="product-listing__grid"
+          style={{ counterReset: `book ${(page - 1) * PAGE_SIZE}` }}
+        >
           {products.map((product) => (
             <ProductBox key={product.id} product={product} />
           ))}

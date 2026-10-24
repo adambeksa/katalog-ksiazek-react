@@ -1,38 +1,30 @@
 .breadcrumbs {
-  margin-bottom: 1rem;
+  margin-bottom: $space-4;
 
   &__list {
     list-style: none;
-    padding: 0;
-    margin: 0;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 0.5rem;
-    font-size: 0.9rem;
+    gap: $space-2;
+    @include label;
   }
 
   &__item {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: $space-2;
   }
 
   &__link {
-    @include link-transition($color-primary, $color-primary-dark);
-
-    &:hover {
-      text-decoration: underline;
-    }
+    @include link-transition($mid, $signal);
   }
 
   &__current {
-    color: $color-text-muted;
-    font-weight: 500;
+    color: $ink;
   }
 
   &__separator {
-    color: #bdc3c7; // Keep as is or add to variables if frequent
-    font-weight: bold;
+    color: $rule;
   }
 }

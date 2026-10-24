@@ -26,10 +26,16 @@ function ProductBox({ product }: ProductBoxProps) {
       />
       <div className="product-box__info">
         <h3 className="product-box__title">{product.name}</h3>
-        <div
-          className="product-box__description"
-          dangerouslySetInnerHTML={{ __html: product.description }}
-        />
+        <div className="product-box__meta">
+          <span className="product-box__author">{product.author}</span>
+          <span className="product-box__epoch">{product.epoch}</span>
+          <span className="product-box__kind">{product.kind}</span>
+          {product.features.includes("audiobook") && (
+            <span className="product-box__audio" title="Audiobook">
+              Audiobook
+            </span>
+          )}
+        </div>
         <Link
           to={ROUTES.PRODUCT_DETAILS(product.id)}
           className="product-box__link"

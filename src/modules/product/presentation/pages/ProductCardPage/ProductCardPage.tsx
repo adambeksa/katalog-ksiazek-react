@@ -62,6 +62,21 @@ function ProductCardPage() {
             <h2>{product.author}</h2>
             <h1>{product.name}</h1>
 
+            <dl className="product-card-page__facts">
+              <div>
+                <dt>Epoka</dt>
+                <dd>{product.epoch}</dd>
+              </div>
+              <div>
+                <dt>Rodzaj</dt>
+                <dd>{product.kind}</dd>
+              </div>
+              <div>
+                <dt>Gatunek</dt>
+                <dd>{product.genre}</dd>
+              </div>
+            </dl>
+
             <div className="product-card-page__description-section">
               <h3>Opis lektury</h3>
               <div

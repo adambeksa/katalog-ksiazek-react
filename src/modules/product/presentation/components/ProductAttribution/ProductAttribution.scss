@@ -1,60 +1,37 @@
 .product-attribution {
-  background: $gradient-surface;
-  border-left: 4px solid $color-primary;
-  border-radius: 8px;
-  padding: 1.5rem;
-  margin: 2rem 0;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  margin-top: $space-8;
+  padding-top: $space-3;
+  border-top: $rule-ink;
 
   &__header {
-    margin-bottom: 1.25rem;
-    padding-bottom: 1rem;
-    border-bottom: 2px solid $color-border-light;
+    margin-bottom: $space-3;
   }
 
   &__logo {
-    max-width: 180px;
-    height: auto;
     display: block;
+    max-width: 140px;
+    height: auto;
   }
 
   &__content {
-    @include flex-column;
-    gap: 0.75rem;
+    display: grid;
+    gap: $space-1;
   }
 
   &__item {
-    font-size: 0.95rem;
-    line-height: 1.6;
-    color: $color-text-secondary;
+    font-size: $text-sm;
+    line-height: 1.5;
 
     strong {
-      color: $color-text-main;
-      font-weight: 600;
-      margin-right: 0.5rem;
+      display: inline-block;
+      min-width: 6.5rem;
+      margin-right: $space-2;
+      @include label;
     }
   }
 
   &__link {
-    @include link-transition($color-primary, $color-primary-dark);
-    font-weight: 600;
-    border-bottom: 1px solid transparent;
-
-    &:hover {
-      border-bottom-color: $color-primary-dark;
-    }
-  }
-
-  @include mobile {
-    padding: 1.25rem;
-    margin: 1.5rem 0;
-
-    .product-attribution__logo {
-      max-width: 150px;
-    }
-
-    .product-attribution__item {
-      font-size: 0.9rem;
-    }
+    @include link-underline;
+    font-weight: 700;
   }
 }

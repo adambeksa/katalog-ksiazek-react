@@ -1,23 +1,67 @@
-* {
+// Numeracja indeksu książek: 001, 002…
+@counter-style abe-index {
+  system: extends decimal;
+  pad: 3 "0";
+}
+
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
 body {
-  font-family:
-    -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
-    "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font-family: $font-sans;
+  font-size: $text-md;
+  line-height: $leading-body;
+  color: $ink;
+  background: $paper;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: $color-bg-light;
-  color: $color-text-main;
-  line-height: 1.6;
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+}
+
+button,
+input,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid $signal;
+  outline-offset: 2px;
+}
+
+::selection {
+  background: $signal;
+  color: $paper;
 }
 
 code {
-  font-family:
-    source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+  font-family: ui-monospace, Menlo, Consolas, "Courier New", monospace;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
+  }
 }
 
 #root {

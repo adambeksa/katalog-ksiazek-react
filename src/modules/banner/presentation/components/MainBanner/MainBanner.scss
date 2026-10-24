@@ -1,41 +1,43 @@
 .banner {
-  text-align: center;
-  padding: 4rem 1rem;
-  background: $gradient-primary;
-  color: $color-bg-white;
-  border-radius: 10px;
-  margin-bottom: 3rem;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: $gutter;
+  row-gap: $space-6;
+  padding-bottom: $space-12;
+  margin-bottom: $space-12;
+  border-bottom: $rule-heavy;
 
   &__title {
-    font-size: 3rem;
-    margin-bottom: 1rem;
+    grid-column: 1 / -1;
+    @include display;
   }
 
   &__text {
-    font-size: 1.25rem;
-    margin-bottom: 2rem;
-    opacity: 0.9;
+    grid-column: 1 / span 7;
+    max-width: 60ch;
+    font-size: $text-lg;
+    line-height: 1.5;
   }
 
   &__link {
-    color: $color-bg-white;
-    text-decoration: underline;
-    transition: all 0.3s;
-
-    &:hover {
-      font-weight: bold;
-    }
+    @include link-underline;
   }
 
   &__cta {
-    @include button-base;
-    padding: 1rem 2rem;
-    background-color: $color-bg-white;
-    color: $color-primary;
+    grid-column: 9 / -1;
+    align-self: end;
+    justify-self: start;
+    @include button-solid;
 
-    &:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    &::after {
+      content: " →";
+    }
+  }
+
+  @include mobile {
+    &__text,
+    &__cta {
+      grid-column: 1 / -1;
     }
   }
 }

@@ -2,6 +2,7 @@ import Breadcrumbs from "../../../../shared/ui/components/Breadcrumbs/Breadcrumb
 import ProductFilters from "../../components/ProductFilters/ProductFilters";
 import ProductBoxSkeleton from "../../components/ProductBox/ProductBoxSkeleton";
 import "./ProductListingPage.scss";
+import ProductListingHead from "./ProductListingHead";
 import { IProductFilters } from "../../../domain/interfaces/IProductFilters.interface";
 import { IFilterOptions } from "../../../domain/interfaces/IFilterOptions.interface";
 
@@ -32,6 +33,7 @@ function ProductListingSkeleton({
           onFilterChange={onFilterChange}
         />
 
+        <ProductListingHead />
         <div className="product-listing__grid">
           {Array.from({ length: 8 }).map((_, index) => (
             <ProductBoxSkeleton key={index} />

@@ -5,6 +5,8 @@ import { IProductFilters } from "../domain/interfaces/IProductFilters.interface"
 import { IFilterOptions } from "../domain/interfaces/IFilterOptions.interface";
 import { useProductContext } from "../application/context/ProductContext";
 
+export const PAGE_SIZE = 20;
+
 export function useFilteredProducts(filters: IProductFilters = {}) {
   const { productsCollection, loading, error } = useProductContext();
 
@@ -36,7 +38,7 @@ export function useFilteredProducts(filters: IProductFilters = {}) {
       { filters, page },
     );
     setFilteredProducts(items);
-    setTotalPages(Math.ceil(total / 20));
+    setTotalPages(Math.ceil(total / PAGE_SIZE));
   }, [productsCollection, JSON.stringify(filters), page, loading, error]);
 
   return { products, filterOptions, loading, error, page, setPage, totalPages };

@@ -2,63 +2,62 @@
   min-height: 100%;
 
   &__title {
-    text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
-    color: $color-text-main;
+    @include heading;
+    margin-bottom: $space-4;
   }
 
-  &__grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 2rem;
-    margin-bottom: 2rem;
-  }
+  &__head {
+    @include index-row;
+    padding-bottom: $space-2;
+    border-bottom: $rule-ink;
+    @include label;
 
-  &__empty {
-    text-align: center;
-    padding: 3rem;
-    color: $color-text-muted;
-
-    p {
-      font-size: 1.25rem;
+    @include mobile {
+      display: none;
     }
   }
 
+  &__grid {
+    margin-bottom: $space-8;
+    counter-reset: book;
+  }
+
+  &__empty {
+    padding-block: $space-12;
+    border-bottom: $rule-thin;
+    font-size: $text-lg;
+    color: $mid;
+  }
+
   &__error {
-    text-align: center;
-    padding: 3rem;
-    font-size: 1.25rem;
-    color: $color-error;
+    padding-block: $space-12;
+    font-size: $text-lg;
+    color: $signal-dark;
   }
 }
 
 .pagination {
-  @include flex-center;
-  gap: 1rem;
-  padding: 1rem 0;
+  @include flex-between;
+  gap: $space-4;
+  padding-top: $space-3;
+  border-top: $rule-heavy;
 
   &__button {
-    padding: 0.5rem 1rem;
-    background-color: #333; // Consider variable for this if frequent, else keep or use generic gray
-    color: $color-bg-white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-    user-select: none;
+    @include text-button;
+    font-size: $text-md;
 
-    &:hover:not(:disabled) {
-      background-color: #555;
+    &:first-child::before {
+      content: "← ";
     }
 
-    &:disabled {
-      background-color: #ccc;
-      cursor: not-allowed;
+    &:last-child::after {
+      content: " →";
     }
   }
 
   &__info {
-    font-weight: bold;
+    font-size: $text-sm;
+    font-variant-numeric: tabular-nums;
+    color: $mid;
   }
 }
