@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/wl-xml/:file", "destination": "https://wolnelektury.pl/media/book/xml/:file" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}

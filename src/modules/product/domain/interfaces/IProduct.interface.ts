@@ -15,6 +15,7 @@ export interface IProduct {
   features: string[];
   url: string;
   license: string;
+  licenseUrl: string;
   audioDirector: string;
   audioArtist: string;
   formats: Record<string, string>;

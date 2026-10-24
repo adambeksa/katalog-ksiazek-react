@@ -47,6 +47,25 @@ export const extractAudioData = (media: IApiMediaDto[]): AudioData => {
   };
 };
 
+export interface LicenseData {
+  license: string;
+  licenseUrl: string;
+}
+
+// Metadane licencji są w nagłówku RDF pliku XML książki:
+// <dc:rights> (np. "Domena publiczna - ...") i opcjonalnie <dc:rights.license> (URL licencji)
+export const extractLicenseData = (xml: string): LicenseData => {
+  const license = xml.match(/<dc:rights(?:\s[^>]*)?>([^<]*)<\/dc:rights>/)?.[1];
+  const licenseUrl = xml.match(
+    /<dc:rights\.license(?:\s[^>]*)?>([^<]*)<\/dc:rights\.license>/,
+  )?.[1];
+
+  return {
+    license: license?.trim().replace(/\.$/, "") || "",
+    licenseUrl: licenseUrl?.trim() || "",
+  };
+};
+
 export const extractEbookFormats = (
   data: IProductDto,
 ): Record<string, string> => {

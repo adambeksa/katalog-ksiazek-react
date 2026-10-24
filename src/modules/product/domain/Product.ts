@@ -15,6 +15,7 @@ export interface ProductConstructorParams {
   features?: string[];
   url?: string;
   license?: string;
+  licenseUrl?: string;
   audioDirector?: string;
   audioArtist?: string;
   formats?: Record<string, string>;
@@ -33,6 +34,7 @@ export class Product implements IProduct {
   features: string[];
   url: string;
   license: string;
+  licenseUrl: string;
   audioDirector: string;
   audioArtist: string;
   formats: Record<string, string>;
@@ -50,6 +52,7 @@ export class Product implements IProduct {
     features = [],
     url = "",
     license = "",
+    licenseUrl = "",
     audioDirector = "",
     audioArtist = "",
     formats = {},
@@ -66,6 +69,7 @@ export class Product implements IProduct {
     this.features = features;
     this.url = url;
     this.license = license;
+    this.licenseUrl = licenseUrl;
     this.audioDirector = audioDirector;
     this.audioArtist = audioArtist;
     this.formats = formats;

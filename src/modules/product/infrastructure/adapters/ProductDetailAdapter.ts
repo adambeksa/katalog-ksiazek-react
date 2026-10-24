@@ -3,9 +3,13 @@ import { IProductDto } from "../interfaces/IProductDto.interface";
 import {
   extractAudioData,
   extractEbookFormats,
+  LicenseData,
 } from "../utils/productAdapterUtils";
 
-export const mapDetailToProduct = (data: IProductDto): Product => {
+export const mapDetailToProduct = (
+  data: IProductDto,
+  licenseData?: LicenseData,
+): Product => {
   const { features, audioFormats, audioDirector, audioArtist } =
     extractAudioData(data.media || []);
   const formats = extractEbookFormats(data);
@@ -23,7 +27,8 @@ export const mapDetailToProduct = (data: IProductDto): Product => {
     kind: data.kinds?.[0]?.name || "",
     url: data.url,
     features,
-    // license: "Domena publiczna", //TODO: change to real license
+    license: licenseData?.license,
+    licenseUrl: licenseData?.licenseUrl,
     audioDirector,
     audioArtist,
     formats,
